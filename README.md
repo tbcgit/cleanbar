@@ -8,8 +8,8 @@ mkdir res_23barcodes
 rm -r res_4barcodes
 rm -r res_23barcodes
 
-#Third, compile the program CleanBar.c:
+#Third, compile the program CleanBar.c: 
 gcc  -O2 -o CB  CleanBar.c
 
-#Fourth, run the program
+#Fourth, run the program:
 ./CB  -help
