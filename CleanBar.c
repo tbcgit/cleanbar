@@ -18,18 +18,19 @@
 //----------------------------------------------------------------
 //  Project Manager: Maria Dzunkova
 //----------------------------------------------------------------
-//  Programmed by: Vicente Arnau Llombart.  10-VII-2024        
+//  Programmed by: Vicente Arnau.  20-VII-2024        
 //----------------------------------------------------------------
 
 //----------------------------------------------------------------
-// Compile as  : gcc  -O2 -o CB  CleanBar.c
+// Compile as :  gcc  -O2 -o CB  CleanBar.c
 //----------------------------------------------------------------
-// SG8  <options>  bar_file  fastq_file
+// Execute as :  CB  <options>  bar_file  fastq_file
 //----------------------------------------------------------------
-// Run as : CB   barcodes.txt  Atrandi_1k.fq
-// Run as : CB   barcodes.txt  Atrandi_100.fq
-// Run as : CB   -h 55  -s 99 barcodes.txt  Atrandi_100.fq
-// Run as : CB   barcodes.txt  Atrandi_2.fastq
+// Examples of use:
+// CB   barcodes.txt  Atrandi_1k.fq
+// CB   barcodes.txt  Atrandi_100.fq
+// CB   -l 55  -s 99 barcodes.txt  Atrandi_100.fq
+// CB   barcodes.txt  Atrandi_2.fastq
 //----------------------------------------------------------------
 
 #include <stdio.h>
@@ -38,8 +39,8 @@
 
 //======>>  Constants that depend on the file with the BARCODES:
 #define MAXBAR    24  //--> Number of BARCODES per position
-#define BARSIZE    8  //--> Tamanyo del BARCODE
-#define LINKSIZE   4  //--> LINK size
+#define BARSIZE    8  //--> BARCODE SIZE
+#define LINKSIZE   4  //--> LINK SIZE
 //==============================================================
 
 				  
@@ -53,14 +54,14 @@
 #define MENOS     45  //--> ASCII code
 
 
-#define SS          16
+#define SS          32  //--> Size of BARCODE LABELS
 //=====> longitud maxima ETI = 370
 #define SSS        600
 //=====> longitud maxima SEQ = 320000 nt
 #define SSS4  20000000     //--> 40Mnt
 
 
-//=======>>>>>>>  Estas carpetas deben de estar ya creadas:
+//=======>>>>>>>  These folders must already be created:
 #define FF_4BAR   "res_4barcodes/"
 #define FF_23BAR  "res_23barcodes/"
 
@@ -68,13 +69,9 @@
 #define No_file   "      ------      "
 
 
-//------->> Funciones definidas en busca.h:
+//------->> Predefined functions (at the end of the file):
  int busca(char *bar, char *sss, int pos, int CAB);
  int inv_com(char *ss1, char *ss2);
-
-
-// #include "busca.h"
-
 
 
 int main( int argc, char *argv[])
@@ -85,7 +82,7 @@ int main( int argc, char *argv[])
  
  char   *ficha, *ficha_base, caracter;
  char   *ff_stats[SS_100], *ff_sum[SS_100];
- char   ff_aux_base[SS_100], ff_aux[SS_100]; //--> para los ficheros de salida.
+ char   ff_aux_base[SS_100], ff_aux[SS_100]; //--> for output files
  
  char   *linea, *auxss, *auxll;
  int    i, j, k, contador;
@@ -98,9 +95,9 @@ int main( int argc, char *argv[])
  int    cuantos=0, cc_dir=0, cc_ic=0;
  int    encontrados=0, completos=0, lim=0;
 
- char   *nomff1, *nomff2; //----> Nombre 2 ficheros salida.
+ char   *nomff1, *nomff2; //----> name of the two output files
  int    pos_max_dir, pos_max_ic;
-  int    corte_dir, corte_ic;
+ int    corte_dir, corte_ic;
  int    pos_D_d, pos_C_d, pos_B_d, pos_A_d;
  
  int    i_barD=-1, min_dd=0;
@@ -112,24 +109,26 @@ int main( int argc, char *argv[])
 
  char  ss_com[BARSIZE+1]; 
 //------------------->> You can change SS to BARSIZE+1:
- char  etiAA[MAXBAR][SS], SSA[MAXBAR][SS];
- char  etiBB[MAXBAR][SS], SSB[MAXBAR][SS];
- char  etiCC[MAXBAR][SS], SSC[MAXBAR][SS];
- char  etiDD[MAXBAR][SS], SSD[MAXBAR][SS];
+ char  etiAA[MAXBAR][SS], SSA[MAXBAR][BARSIZE+1];
+ char  etiBB[MAXBAR][SS], SSB[MAXBAR][BARSIZE+1];
+ char  etiCC[MAXBAR][SS], SSC[MAXBAR][BARSIZE+1];
+ char  etiDD[MAXBAR][SS], SSD[MAXBAR][BARSIZE+1];
 //----------------------------
 
-//--------->> they already take default values
- int  LLL_VEO=2000;
- int  HEAD=88;
- int  CAB =80; //---> (HEAD+BARSIZE)
+//-------------------->> default values
+//---------> number of predefined reads with screen output:
+ int  LLL_VEO= 2000; 
+ //-------->> number of nucleotides analyzed at the start of the read
+ int  HEAD   = 88; 
+ int  CAB    = 80; //---> (HEAD-BARSIZE)
  
 
 
- printf (  "==================================================");
- printf ("\n=     CleanBar : Single Cell data analysis       =");
- printf ("\n==================================================");
- printf ("\n=  Vicente Arnau & Maria Dzunkova . 14-XI-2024   =");
- printf ("\n==================================================\n");
+ printf (  "===================================================");
+ printf ("\n=     CleanBar : Single Cell data analysis        =");
+ printf ("\n===================================================");
+ printf ("\n=  Vicente Arnau & Maria Dzunkova . 20-XII-2024   =");
+ printf ("\n===================================================\n");
 
 
  if (argc == 1) {
@@ -144,13 +143,13 @@ int main( int argc, char *argv[])
 	// printf("\n ##%s##", argv[1]); 
 	 
 	aux=1; aux2=1;
-	aux=  strcmp ( argv[1], "-help");
+	aux= strcmp ( argv[1], "-help");
 	aux2= strcmp ( argv[1], "--help");
 	if ((aux==0) || (aux2==0)){
 		printf("\nSINTAX: ./CB  <options>  BARCODES_File  FASTQ_File");
 		 printf(" >  screen_output_File \n");
 		printf("\n<options>: ");
-		printf("\n -h\t: Number of nt parsed at the start and the end of a read");
+		printf("\n -l\t: Number of nt parsed at the start and the end of a read");
 		printf("\n -s\t: Number of reads showed on the screen");	
 		printf("\n   \t: screen_output_File is optional \n");
 		fflush(stdin); getchar();  exit(0);
@@ -162,7 +161,7 @@ int main( int argc, char *argv[])
 	}
 	 
 //==============================================================
-//========  Reservo memoria para los STRINGS:
+//========  I reserve dynamic memory for STRINGS:
 
  auxll= (char *) calloc (SSS, sizeof(char));
  auxss= (char *) calloc (SSS, sizeof(char));
@@ -219,7 +218,7 @@ int main( int argc, char *argv[])
 			}
 		else {
 			aux=1;
-			aux=  strcmp ( argv[1], "-h");
+			aux=  strcmp ( argv[1], "-l");
 			if (aux==0){ //---> we modify head (CAB+SIZEBAR)
 				HEAD= atoi(argv[2]);
 				printf ("\nSequence length analyzed = %d\n", HEAD);
@@ -258,7 +257,7 @@ int main( int argc, char *argv[])
 				}
 			else {
 				aux=1;
-				aux=  strcmp ( argv[1], "-h");
+				aux=  strcmp ( argv[1], "-l");
 				if (aux==0){ //---> we modify head (CAB+SIZEBAR)
 					HEAD= atoi(argv[2]);
 					printf ("\nSequence length analyzed = %d\n", HEAD);
@@ -275,7 +274,7 @@ int main( int argc, char *argv[])
 				}
 			else {
 				aux=1;
-				aux=  strcmp ( argv[3], "-h");
+				aux=  strcmp ( argv[3], "-l");
 				if (aux==0){ //---> we modify head (CAB+SIZEBAR)
 					HEAD= atoi(argv[4]);
 					printf ("\nSequence length analyzed = %d\n", HEAD);
@@ -314,7 +313,7 @@ int main( int argc, char *argv[])
 //---> Generating "_stats.txt" file:
 
  ff_aux_base[0]=0; //--> inicialized
- // strcpy(ficha, argv[2]);
+
  aux= strlen(ficha_base);  // printf("\n length of %s = %d", ficha_base, aux);
  i=0;
  do {
@@ -446,8 +445,6 @@ int main( int argc, char *argv[])
 	auxss= fgets(linea1, SSS, ffastq);
 	len1=strlen(linea1); linea1[len1-1]=0;
 	if(len1>2){
-		// printf("\nlen1: %d\n", len1);
-		// printf("%s\n", linea1);
 		if (len1>maxlen1) maxlen1=len1;
 		}
 		
@@ -455,8 +452,6 @@ int main( int argc, char *argv[])
 	auxss= fgets(linea2, SSS4-1, ffastq);
 	len2=strlen(linea2);  linea2[len2-1]=0;
 	if(len1>2){
-		// printf("\nlen2: %d\n", len2);
-    	// printf("%s\n", linea2);
 		if (len2>maxlen2) maxlen2=len2;
 		}
 
@@ -534,12 +529,9 @@ int main( int argc, char *argv[])
 		pos_D= dd;
 		
 		if (dd<0) fprintf(fout, "\t...\t%3d", dd);
-		//--> Confundo indice con la posicion:
-		//--> else fprintf(fout, "\t%3d", i_barD);
+
 		else fprintf(fout, "\t%3d", pos_D);
-		// fprintf(fout, "\n");
-				
-		// if (dd<0) strcat(nomff1, "___");
+	
 		if (dd<0) strcat(nomff1, "____");
 		else{
 			strcat(nomff1, etiDD[i_barD]); 
@@ -552,8 +544,6 @@ int main( int argc, char *argv[])
 		if (pos_D>=0) pos_bus= pos_D + 8;
 		else          pos_bus= 0;
 		
-		// printf("\n pos_bus_C = %d", pos_bus);
-		
 	    do{
 
 			//-------->>  Trozo de linea2 con lo que compara el BARCODE:
@@ -562,8 +552,7 @@ int main( int argc, char *argv[])
 				ss_com[kk]= linea2[k];
 				}
 			ss_com[BARSIZE]	= 0;  //--> final de string !!!
-			
-			// printf("\ncadena= %s", ss_com);
+		
 			
 			jj=0;
 			do{
@@ -614,9 +603,6 @@ int main( int argc, char *argv[])
 			strcat(nomff1, etiCC[indice_C]); 
 			strcat(nomff1, "_");
 			}		
-		
-		
-		//fflush(stdin); getchar();
 		
 	//-------------->>  BARCODE_B :  
 	    tengo_bar=0; i=0; dd= -1;  
@@ -723,7 +709,6 @@ int main( int argc, char *argv[])
 				
 				cc_dir++;
 				encontrados_A++;
-				// fflush(stdin); getchar();
 				}
 				
 		   pos_bus++;
@@ -741,7 +726,6 @@ int main( int argc, char *argv[])
 		if (dd<0) strcat(nomff1, "__");
 		else{
 			strcat(nomff1, etiAA[indice_A]); 
-			// strcat(nomff1, "_");  //--> Sobra al final
 			}		
 				
 
@@ -765,18 +749,16 @@ int main( int argc, char *argv[])
 		
 		// if (cc_dir==4) 	fflush(stdin); getchar();
 				
-		//===================================================================		
-		//========>> Search in COMPLEMENTARY INVERSE (INVERSA_COMPLEMENTARIA)
+	//===================================================================		
+	//========>> Search in reverse complementary (INVERSA_COMPLEMENTARIA)
 	
 		
-		//--------->> COMPLEMENTARY REVERSE:
+		//--------->> REVERSE COMPLEMENTARY:
 		
   		k = inv_com(linea2_inv, linea2);
-	
 		strcpy(nomff2, "ff_"); //--->  inicio de nombre de fichero
 			
 		cc_ic= 0;
-	    // contador++;
 		fprintf(fout, "\tRev_com\t%5d", contador); 
 	  
 	  
@@ -798,7 +780,6 @@ int main( int argc, char *argv[])
 				if(dd<min_dd){
 					min_dd=dd;
 					i_barD= i;
-					// printf("(%3d)-", min_dd);
 					}
 				}			   
 		   }//---->> del for(i)	
@@ -834,9 +815,6 @@ int main( int argc, char *argv[])
 		if (dd<0) fprintf(fout, "\t...\t%3d", dd);
 		else fprintf(fout, "\t%3d", pos_D);
 		
-		// fprintf(fout, "\n");
-				
-		// if (dd<0) strcat(nomff2, "___");
 		if (dd<0) strcat(nomff2, "____");
 				
 		else{
@@ -963,7 +941,6 @@ int main( int argc, char *argv[])
 		
 		if (dd<0) fprintf(fout, "\t...\t%3d", dd);
 		else fprintf(fout, "\t%3d", pos_B);
-		// fprintf(fout, "\n");
 				
 		if (dd<0) strcat(nomff2, "___");
 		else{
@@ -1034,12 +1011,9 @@ int main( int argc, char *argv[])
 			strcat(nomff2, etiAA[indice_A]); 
 			//strcat(nomff2, "_"); //--> Sobra al final
 			}		
-						
-							
-		// if (cc_ic==4) 	fflush(stdin); getchar();						 
+											
 								
-								
-		//----->> Posición en INVERSA_C para limpiar las reads:			
+		//----->> Posicion en Reverse_Compl para limpiar las reads:			
 		pos_max_ic=0;			
 		if (cc_ic==4) pos_max_ic= pos_A;
 		else {
@@ -1055,7 +1029,6 @@ int main( int argc, char *argv[])
 		//----------->>  Ahora tambien con 0+1 o 2+3 BARCODES:
 		
 		strcat(nomff2, ".fq");  //--->> siempre con *.fq
-		
 		
 		
 		//----------->>  4 BARCODES presentes. Resultados a FICHERO FASTQ. 
@@ -1271,18 +1244,16 @@ int main( int argc, char *argv[])
  return (MAXBAR);
  }
 
-//*****************************************************************
-//  FUNCIONES UTILIZADAS
+
+//*************************************************************
+//*************************************************************
+//**************    DEFINED FUNCTIONS    **********************
 
 int busca(char *bar, char *sss, int pos, int CAB)
 {
  int  ii, jj, len1, len2, dd;
  int  salgo=0, igual=0, limit=0;
  
-// printf("\n++++++++++++++++++++++++++++++++++");
-// printf("\nbar =  %s", bar);
-// printf("\nread=  %s", sss);
-// printf("\n++++++++++++++++++++++++++++++++++\n");
  
  len1=strlen(bar); len2=strlen(sss);
  
@@ -1335,6 +1306,6 @@ int inv_com(char *ss1, char *ss2)
  
  return(ll);
 }
-
-
+//*****************************************************************
+//*****************************************************************
 
