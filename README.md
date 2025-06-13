@@ -6,10 +6,12 @@ It also provides statistics useful for optimizing laboratory procedures.
 -----------------------------------------------------------------------------
 ## How to used:
 First, create the folders "res_4barcodes" and "res_23barcodes" in your linux sistem:
+
 mkdir res_4barcodes
 mkdir res_23barcodes
 
 Second, if the folders are already created, delete their contents:
+
 rm -r res_4barcodes
 rm -r res_23barcodes
 
@@ -23,8 +25,11 @@ For information on what arguments the program accepts, write:
 
 ## An example of how to run the program on the "Atrandi_1k.fq" file:
  ./CB  barcodes.txt Atrandi_1k.fq
+ 
 In the res_4barcodes folder, as many files will be generated as individual cells are obtained from using the ClenBar program.
+
 In the res_23barcodes folder, as many files will be generated as cells with 2 or 3 shared barcodes are obtained from using the ClenBar program.
+
 We also generate 2 files with additional information about the analysis of each sequence (read) of the analyzed Atrandi_1k.fq file:
 Atrandi_1k_stats.txt
 Atrandi_1k_summary.txt
