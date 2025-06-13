@@ -33,6 +33,7 @@ We also generate 2 files with additional information about the analysis of each 
 * Atrandi_1k_stats.txt
 * Atrandi_1k_summary.txt
 
+##
 The CleanBar program will display on the screen the barcodes read from the Barcodes.txt file.
 And then how it detects the barcodes in the first 1000 sequences (reads) of the Atrandi_1k.fq file.
 -----------------------------------------------------------------------------
