@@ -16,7 +16,7 @@ Second, if the folders are already created, delete their contents:
 
 Third, Download the "CleanBar.c", "Atrandi_1k.fq" and "barcodes.txt" files and copy them to your working folder.
 
-Finally, compile the CleanBar.c program and generate the CB executable. 
+Finally, compile the CleanBar.c program and generate the CB executable using the program ggc, present in all the linux systems 
 ### gcc  -O2 -o CB  CleanBar.c
 
 For information on what arguments the program accepts, write:
