@@ -1,12 +1,11 @@
 # cleanbar
 # CleanBar is a flexible tool for demultiplexing reads tagged with sequentially ligated barcodes,
-
 # accommodating variations in barcode positions and linker lengths while preventing 
 
 # misclassification of natural barcode-like sequences and handling diverse ligation errors. 
 
 # It also provides statistics useful for optimizing laboratory procedures. 
-# --------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 
 # First, create the folders "res_4barcodes" and "res_23barcodes" in your linux sistem:
 # mkdir res_4barcodes
@@ -34,4 +33,4 @@
 
 # The CleanBar program will display on the screen the barcodes read from the Barcodes.txt file.
 # And then how it detects the barcodes in the first 1000 sequences (reads) of the Atrandi_1k.fq file.
-# -------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
