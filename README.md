@@ -6,7 +6,7 @@
 # misclassification of natural barcode-like sequences and handling diverse ligation errors. 
 
 # It also provides statistics useful for optimizing laboratory procedures. 
-# ----------------------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------
 
 # First, create the folders "res_4barcodes" and "res_23barcodes" in your linux sistem:
 # mkdir res_4barcodes
@@ -29,9 +29,9 @@
 # In the res_4barcodes folder, as many files will be generated as individual cells are obtained from using the ClenBar program.
 # In the res_23barcodes folder, as many files will be generated as cells with 2 or 3 shared barcodes are obtained from using the ClenBar program.
 # We also generate 2 files with additional information about the analysis of each sequence (read) of the analyzed Atrandi_1k.fq file:
- Atrandi_1k_stats.txt
- Atrandi_1k_summary.txt
+# Atrandi_1k_stats.txt
+# Atrandi_1k_summary.txt
 
 # The CleanBar program will display on the screen the barcodes read from the Barcodes.txt file.
 # And then how it detects the barcodes in the first 1000 sequences (reads) of the Atrandi_1k.fq file.
-# -------------------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------
