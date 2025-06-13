@@ -26,8 +26,7 @@ For information on what arguments the program accepts, write:
 ## An example of how to run the program on the "Atrandi_1k.fq" file:
 ##  ./CB  barcodes.txt Atrandi_1k.fq
  
-In the res_4barcodes folder, as many files will be generated as individual cells are obtained from using the ClenBar program.
-
+In the res_4barcodes folder, we will have as many files as cells with 4 identical barcodes we have.
 In the res_23barcodes folder, as many files will be generated as cells with 2 or 3 shared barcodes are obtained from using the ClenBar program.
 
 We also generate 2 files with additional information about the analysis of each sequence (read) of the analyzed Atrandi_1k.fq file:
