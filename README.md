@@ -1,8 +1,6 @@
-# cleanbar
-CleanBar is a flexible tool for demultiplexing reads tagged with sequentially ligated barcodes,
-accommodating variations in barcode positions and linker lengths while preventing 
-misclassification of natural barcode-like sequences and handling diverse ligation errors. 
-It also provides statistics useful for optimizing laboratory procedures. 
+# CleanBar
+## CleanBar is a flexible tool for demultiplexing reads tagged with sequentially ligated barcodes, accommodating variations in barcode positions and linker lengths while preventing misclassification of natural barcode-like sequences and handling diverse ligation errors. 
+## It also provides statistics useful for optimizing laboratory procedures. 
 -----------------------------------------------------------------------------
 ## How to used:
 First, create the folders "res_4barcodes" and "res_23barcodes" in your linux sistem:
