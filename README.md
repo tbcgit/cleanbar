@@ -2,7 +2,7 @@
 #CleanBar is a flexible tool for demultiplexing reads tagged with sequentially ligated barcodes,
 #accommodating variations in barcode positions and linker lengths while preventing 
 #misclassification of natural barcode-like sequences and handling diverse ligation errors. 
-#It also provides statistics useful for optimizing laboratory procedures.
+#It also provides statistics useful for optimizing laboratory procedures. 
 #----------------------------------------------------------------------------------------------
 
 #First, create the folders "res_4barcodes" and "res_23barcodes" in your linux sistem:
@@ -18,7 +18,7 @@
 #Finally, compile the CleanBar.c program and generate the CB executable. 
 # gcc  -O2 -o CB  CleanBar.c
 
-#For information on what arguments the program accepts, type:
+#For information on what arguments the program accepts, write:
 # ./CB  --help
 
 #An example of how to run the program on the "Atrandi_1k.fq" file:
