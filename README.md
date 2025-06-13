@@ -32,6 +32,7 @@ In the res_23barcodes folder, as many files will be generated as cells with 2 or
 We also generate 2 files with additional information about the analysis of each sequence (read) of the analyzed Atrandi_1k.fq file:
 * Atrandi_1k_stats.txt --> provides the file name in which each sequence was stored, the position of the last detected barcode, and the lengths of linkers between barcodes
 * Atrandi_1k_summary.txt  --> lists the barcodes found in both, direct and reverse complement strings for each sequence
+* Atrandi_1k_1_0_bar.fq  --> Have the reads with only one or no barcodes of Atrandi_1k.fq.
 
 The CleanBar program will display on the screen the barcodes read from the Barcodes.txt file. And then how it detects the barcodes in the first 1000 sequences (reads) of the Atrandi_1k.fq file (a user-adjustable parameter with -s flag).
 
