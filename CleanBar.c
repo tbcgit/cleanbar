@@ -18,18 +18,18 @@
 //----------------------------------------------------------------
 //  Project Manager: Maria Dzunkova
 //----------------------------------------------------------------
-//  Programmed by: Vicente Arnau.  20-VII-2024        
+//  Programmed by: Vicente Arnau.  13-VI-2025        
 //----------------------------------------------------------------
 
 //----------------------------------------------------------------
 // Compile as :  gcc  -O2 -o CB  CleanBar.c
 //----------------------------------------------------------------
-// Execute as :  CB  <options>  bar_file  fastq_file
+// Execute as :  ./CB  <options>  bar_file  fastq_file
 //----------------------------------------------------------------
 // Examples of use:
 // CB   barcodes.txt  Atrandi_1k.fq
 // CB   barcodes.txt  Atrandi_100.fq
-// CB   -l 55  -s 99 barcodes.txt  Atrandi_100.fq
+// CB   -l 55  -s 99 -nb 20 barcodes.txt  Atrandi_1k.fq
 // CB   barcodes.txt  Atrandi_2.fastq
 //----------------------------------------------------------------
 
@@ -38,11 +38,9 @@
 #include <string.h>
 
 //======>>  Constants that depend on the file with the BARCODES:
-#define MAXBAR    24  //--> Number of BARCODES per position
 #define BARSIZE    8  //--> BARCODE SIZE
 #define LINKSIZE   4  //--> LINK SIZE
 //==============================================================
-
 				  
 #define CAB_4     320  //--> large value 
                        //--> (greater than CAB+BARSIZE+LINKSIZE)
@@ -105,6 +103,8 @@ int main( int argc, char *argv[])
  int    indice_D, indice_C, indice_B, indice_A;
  int    uno_cero=0;
  
+ int  MAXBAR=24;     //--> Number of BARCODES per position
+ 
   float  faux, faux1, faux2;
 
  char  ss_com[BARSIZE+1]; 
@@ -127,13 +127,13 @@ int main( int argc, char *argv[])
  printf (  "===================================================");
  printf ("\n=     CleanBar : Single Cell data analysis        =");
  printf ("\n===================================================");
- printf ("\n=  Vicente Arnau & Maria Dzunkova . 20-XII-2024   =");
+ printf ("\n=  Vicente Arnau & Maria Dzunkova . 13-VI-2025    =");
  printf ("\n===================================================\n");
 
 
  if (argc == 1) {
    printf("\nSINTAX: ./CB  <options>  BARCODES_File  FASTQ_File ");
-   printf(" >  screen_File ");
+   printf(" >  screen_File.txt ");
    printf("\n\nYou can use this: ./CB  --help \n");
    fflush(stdin); getchar();  exit(0);
    }
@@ -147,10 +147,11 @@ int main( int argc, char *argv[])
 	aux2= strcmp ( argv[1], "--help");
 	if ((aux==0) || (aux2==0)){
 		printf("\nSINTAX: ./CB  <options>  BARCODES_File  FASTQ_File");
-		 printf(" >  screen_output_File \n");
+		printf(" >  screen_output_File \n");
 		printf("\n<options>: ");
 		printf("\n -l\t: Number of nt parsed at the start and the end of a read");
 		printf("\n -s\t: Number of reads showed on the screen");	
+		printf("\n -nb\t: Number of barcodes for group");	
 		printf("\n   \t: screen_output_File is optional \n");
 		fflush(stdin); getchar();  exit(0);
 		}
@@ -216,17 +217,24 @@ int main( int argc, char *argv[])
 		    LLL_VEO= atoi(argv[2]);
 			printf ("\nLines per screen = %d\n", LLL_VEO);
 			}
-		else {
-			aux=1;
-			aux=  strcmp ( argv[1], "-l");
-			if (aux==0){ //---> we modify head (CAB+SIZEBAR)
+		
+		
+		aux=1;
+		aux=  strcmp ( argv[1], "-l");
+		if (aux==0){ //---> we modify head (CAB+SIZEBAR)
 				HEAD= atoi(argv[2]);
 				printf ("\nSequence length analyzed = %d\n", HEAD);
 				CAB = HEAD - BARSIZE;
 				}			
-		}
 
+		aux=1;
+		aux=  strcmp ( argv[1], "-nb");
+		if (aux==0){ //---> we modify MAXBAR)
+				MAXBAR= atoi(argv[2]);
+				printf ("\nNumber of BARCODES for group = %d\n", MAXBAR);
+				}			
 		
+
 		//---> 	Now I read the data files:
 		strcpy(ficha, argv[3]);
 
@@ -255,15 +263,24 @@ int main( int argc, char *argv[])
 		    	LLL_VEO= atoi(argv[2]);
 				printf ("\nLines per screen = %d\n", LLL_VEO);
 				}
-			else {
-				aux=1;
-				aux=  strcmp ( argv[1], "-l");
-				if (aux==0){ //---> we modify head (CAB+SIZEBAR)
-					HEAD= atoi(argv[2]);
-					printf ("\nSequence length analyzed = %d\n", HEAD);
-					CAB = HEAD - BARSIZE;
-					}			
+		
+		
+			aux=1;
+			aux=  strcmp ( argv[1], "-l");
+			if (aux==0){ //---> we modify head (CAB+SIZEBAR)
+				HEAD= atoi(argv[2]);
+				printf ("\nSequence length analyzed = %d\n", HEAD);
+				CAB = HEAD - BARSIZE;
+				}			
+	
+			aux=1;
+			aux=  strcmp ( argv[1], "-nb");
+			if (aux==0){ //---> we modify MAXBAR)
+				MAXBAR= atoi(argv[2]);
+				printf ("\nNumber of BARCODES for group = %d\n", MAXBAR);
 				}
+	
+	
 		
 			//--> Segundo opcional:
 			aux=1;
@@ -272,15 +289,22 @@ int main( int argc, char *argv[])
 		    	LLL_VEO= atoi(argv[4]);
 				printf ("\nLines per screen = %d\n", LLL_VEO);
 				}
-			else {
-				aux=1;
-				aux=  strcmp ( argv[3], "-l");
-				if (aux==0){ //---> we modify head (CAB+SIZEBAR)
+
+			aux=1;
+			aux=  strcmp ( argv[3], "-l");
+			if (aux==0){ //---> we modify head (CAB+SIZEBAR)
 					HEAD= atoi(argv[4]);
 					printf ("\nSequence length analyzed = %d\n", HEAD);
 					CAB = HEAD - BARSIZE;
-					}			
+					}		
+					
+			aux=1;
+			aux=  strcmp ( argv[3], "-nb");
+			if (aux==0){ //---> we modify MAXBAR)
+				MAXBAR= atoi(argv[4]);
+				printf ("\nNumber of BARCODES for group = %d\n", MAXBAR);
 				}
+	
 		
 			//---> 	Now I read the data files:
 			strcpy(ficha, argv[5]);
@@ -301,7 +325,104 @@ int main( int argc, char *argv[])
 			strcpy(ficha_base, ficha);
 			printf ("\n==================================================");
 		
+			}//---->> del IF-ELSE de 7 argumentos
+				
+			else if (argc == 9){//------->>  Ultimo IF-ELSE
+		
+			//--> Primer opcional:
+			aux=1;
+			aux=  strcmp ( argv[1], "-s");
+			if (aux==0){ //---> we modify the lines per screen that we display
+		    	LLL_VEO= atoi(argv[2]);
+				printf ("\nLines per screen = %d\n", LLL_VEO);
+				}
+		
+			aux=1;
+			aux=  strcmp ( argv[1], "-l");
+			if (aux==0){ //---> we modify head (CAB+SIZEBAR)
+				HEAD= atoi(argv[2]);
+				printf ("\nSequence length analyzed = %d\n", HEAD);
+				CAB = HEAD - BARSIZE;
+				}			
+	
+			aux=1;
+			aux=  strcmp ( argv[1], "-nb");
+			if (aux==0){ //---> we modify MAXBAR)
+				MAXBAR= atoi(argv[2]);
+				printf ("\nNumber of BARCODES for group = %d\n", MAXBAR);
+				}
+	
+	
+			//--> Segundo opcional:
+			aux=1;
+			aux=  strcmp ( argv[3], "-s");
+			if (aux==0){ //---> we modify the lines per screen that we display
+		    	LLL_VEO= atoi(argv[4]);
+				printf ("\nLines per screen = %d\n", LLL_VEO);
+				}
+
+			aux=1;
+			aux=  strcmp ( argv[3], "-l");
+			if (aux==0){ //---> we modify head (CAB+SIZEBAR)
+					HEAD= atoi(argv[4]);
+					printf ("\nSequence length analyzed = %d\n", HEAD);
+					CAB = HEAD - BARSIZE;
+					}		
+					
+			aux=1;
+			aux=  strcmp ( argv[3], "-nb");
+			if (aux==0){ //---> we modify MAXBAR)
+				MAXBAR= atoi(argv[4]);
+				printf ("\nNumber of BARCODES for group = %d\n", MAXBAR);
+				}
+	
+			//-------> Tercer opcional:
+			aux=1;
+			aux=  strcmp ( argv[5], "-s");
+			if (aux==0){ //---> we modify the lines per screen that we display
+		    	LLL_VEO= atoi(argv[6]);
+				printf ("\nLines per screen = %d\n", LLL_VEO);
+				}
+
+			aux=1;
+			aux=  strcmp ( argv[5], "-l");
+			if (aux==0){ //---> we modify head (CAB+SIZEBAR)
+					HEAD= atoi(argv[6]);
+					printf ("\nSequence length analyzed = %d\n", HEAD);
+					CAB = HEAD - BARSIZE;
+					}		
+					
+			aux=1;
+			aux=  strcmp ( argv[5], "-nb");
+			if (aux==0){ //---> we modify MAXBAR)
+				MAXBAR= atoi(argv[6]);
+				printf ("\nNumber of BARCODES for group = %d\n", MAXBAR);
+				}
+	
+	
+		
+			//---> 	Now I read the data files:
+			strcpy(ficha, argv[7]);
+
+			if ( (fbar=fopen(ficha,"r"))==NULL) {
+				printf ("\n Problems with  %s??", ficha);
+				fflush(stdin); getchar();  exit(0);
+				}
+			printf ("\n BARCODES File:  %s", ficha);
+
+			strcpy(ficha, argv[8]);
+			if ( (ffastq=fopen(ficha,"r"))==NULL) {
+				printf ("\n Problems with  %s??", ficha);
+				fflush(stdin); getchar();  exit(0);
+				}
+
+			printf ("\n FASTQ File   :  %s\n", ficha);
+			strcpy(ficha_base, ficha);
+			printf ("\n==================================================");
+		
 			}//---->> del último IF-ELSE
+				
+			
 	}
  
 // printf("\n ... press a key <CR> ");
@@ -1245,9 +1366,14 @@ int main( int argc, char *argv[])
  }
 
 
-//*************************************************************
+
 //*************************************************************
 //**************    DEFINED FUNCTIONS    **********************
+
+//*************************************************************
+// The busca() function returns the position of a BARCODE at 
+// the beginning of a sequence "sss", in the first 
+// CAB nucleotides of the sequence.
 
 int busca(char *bar, char *sss, int pos, int CAB)
 {
@@ -1287,6 +1413,12 @@ int busca(char *bar, char *sss, int pos, int CAB)
  else            return(-1);
  
 }
+
+
+//*************************************************************
+// The inv_com() function calculates the reverse complementary 
+// sequence of a given sequence "ss1". 
+// It returns the result in the sequence "ss2"
 
 int inv_com(char *ss1, char *ss2)
 {
