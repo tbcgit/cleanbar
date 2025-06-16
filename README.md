@@ -4,7 +4,7 @@ CleanBar is a flexible tool for demultiplexing reads tagged with sequentially li
 It also provides statistics useful for optimizing laboratory procedures. 
 CleanBar is a program originally designed to process reads from the Atrandi platform, yet adaptable to a wide range of barcode configurations interspersed with any type of linker.
 CleanBar searches for barcodes from both ends of the sequence.
------------------------------------------------------------------------------
+
 ## How to used:
 First, create the folders ``res_4barcodes`` and ``res_23barcodes`` in your linux sistem:
 
@@ -51,4 +51,4 @@ We also generate 3 files with additional information about the analysis of each 
 
 The CleanBar program will display on the screen the barcodes read from the Barcodes.txt file. And then how it detects the barcodes in the first 1000 sequences (reads) of the Atrandi_1k.fq file (a user-adjustable parameter with -s flag).
 
------------------------------------------------------------------------------
+
