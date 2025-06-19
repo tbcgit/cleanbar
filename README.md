@@ -4,11 +4,15 @@ CleanBar is a flexible tool for demultiplexing reads tagged with sequentially li
 It also provides statistics useful for optimizing laboratory procedures. 
 CleanBar is a program originally designed to process reads from the Atrandi platform, yet adaptable to a wide range of barcode configurations interspersed with any type of linker.
 CleanBar searches for barcodes from both ends of the sequence.
+
+
 All sequences in which the same set of 4 barcodes has been detected are written to a single file, whose name is generated from the labels of the 4 barcodes found. 
 All these generated files are stored in the ``res_4barcodes`` folder.
+
+
 On the other hand, all sequences analyzed with 2 or 3 identical barcodes are stored in different files in the ``res_23barcodes`` folder.
-Additionally, a file "<file_input>_1_0_bar.fq" is generated with all the reads where no barcodes have been detected at either end.
-And "<file_input>_3_2_bar.fq" stores all the sequences in which 3 or 2 barcodes have been detected.
+Additionally, a file ``<file_input>_1_0_bar.fq`` is generated with all the reads where no barcodes have been detected at either end.
+And ``<file_input>_3_2_bar.fq`` stores all the sequences in which 3 or 2 barcodes have been detected.
 
 ## How to used:
 First, create the folders ``res_4barcodes`` and ``res_23barcodes`` in your linux sistem:
