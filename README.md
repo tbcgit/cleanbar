@@ -10,7 +10,7 @@ All sequences in which the same set of 4 barcodes has been detected are written 
 All these generated files are stored in the ``res_4barcodes`` folder.
 
 
-On the other hand, all sequences analyzed with 2 or 3 identical barcodes are stored in different files in the ``res_23barcodes`` folder.
+On the other hand, all sequences analyzed with 2 or 3 identical barcodes are stored in different files in the ``res_23barcodes`` folder. The file names are generated using the labels of the shared barcodes.
 
 
 Additionally, a file ``<file_input>_1_0_bar.fq`` is generated with all the reads where no barcodes have been detected at either end.
