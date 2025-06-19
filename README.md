@@ -52,7 +52,7 @@ For information on what arguments the program accepts, write:
 ./CB  --help
 ````
 
-
+``
 ===================================================
 =     CleanBar : Single Cell data analysis        =
 ===================================================
@@ -68,6 +68,7 @@ SINTAX: ./CB  <options>  BARCODES_File  FASTQ_File >  Screen_output_File.txt
  -bs    : number of nucleotides per barcode (BARCODE_SIZE)
  -ls    : number of nucleotides per link (LINK_SIZE)
         : Screen_output_File.txt is optional
+``
 		
 		
 
