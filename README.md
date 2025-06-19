@@ -78,9 +78,9 @@ Next, it will show you how to run CleanBar using the CB executable.
 
 You can run the prepare.sh command like this:
 
-
+````
 bash prepare.sh
-
+````
 
 ## An example of how to run the program on the ``Atrandi_1k.fq`` file:
 
