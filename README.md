@@ -103,7 +103,7 @@ We also generate 4 files with additional information about the analysis of each 
 
 The CleanBar program will display on the screen the barcodes read from the Barcodes.txt file. And then how it detects the barcodes in the first 1000 sequences (reads) of the Atrandi_1k.fq file (a user-adjustable parameter with -s flag).
 
-## Another example of using CleanBar ``Atrandi_4k.fastq`` file:
+## Another example of using CleanBar on the  ``Atrandi_4k.fastq`` file:
 
 ````
 ./CB   -s 50 -l 78 -bn 5 -bs 6  barcodes_s6.txt Atrandi_4k.fastq
