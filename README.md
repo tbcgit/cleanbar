@@ -68,6 +68,19 @@ SINTAX: ./CB  <options>  BARCODES_File  FASTQ_File >  Screen_output_File.txt
         : Screen_output_File.txt is optional
 ````
 
+## The script ``prepare.sh``:
+
+You can download the "prepare.sh" script. 
+When you run it, if the ``res_4barcodes`` and ``res_23barcodes`` folders aren't created, it will create them.
+And if they're already created, it will delete all the files inside them.
+Next, it will show you how to run CleanBar using the CB executable.
+
+
+You can run the prepare.sh command like this:
+
+
+bash prepare.sh
+
 
 ## An example of how to run the program on the ``Atrandi_1k.fq`` file:
 
