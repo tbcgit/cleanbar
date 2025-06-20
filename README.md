@@ -43,17 +43,16 @@ Every time we run the CB command again, it is necessary to delete all the files 
 which we can do by re-running the prepare.sh script
  
 
+## An example of how to view the CleanBar options:
+
 For information on what arguments the ``CleanBar`` program accepts, write:
 
 ````
 ./CB  --help
 ````
 
-## An example of how to view the CleanBar options:
+and the output of the programme will be:
 
-````
-./CB  --help
-````
 
 ````
 ===================================================
