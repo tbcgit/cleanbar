@@ -41,38 +41,7 @@ For example:
 
 Every time we run the CB command again, it is necessary to delete all the files in the res_4barcodes and res_32_barcodes folders, 
 which we can do by re-running the prepare.sh script
- 
-
-## An example of how to view the CleanBar options:
-
-For information on what arguments the ``CleanBar`` program accepts, write:
-
-````
-./CB  --help
-````
-
-and the output of the programme will be:
-
-
-````
-===================================================
-=     CleanBar : Single Cell data analysis        =
-===================================================
-=  Vicente Arnau & Maria Dzunkova . 19-VI-2025    =
-===================================================
-
-SINTAX: ./CB  <options>  BARCODES_File  FASTQ_File >  Screen_output_File.txt
-
-<options>:
- -l     : Number of nt parsed at the start and the end of a read
- -s     : Number of reads showed on the screen
- -bn    : Number of barcodes for group
- -bs    : number of nucleotides per barcode (BARCODE_SIZE)
- -ls    : number of nucleotides per link (LINK_SIZE)
-        : Screen_output_File.txt is optional
-````
-		
-		
+ 	
 
 ## The script ``prepare.sh``:
 
@@ -106,7 +75,41 @@ or
 bash prepare.sh
 ````
 
+## An example of how to view the CleanBar options:
+
+For information on what arguments the ``CleanBar`` program accepts, write:
+
+````
+./CB  --help
+````
+
+and the output of the programme will be:
+
+
+````
+===================================================
+=     CleanBar : Single Cell data analysis        =
+===================================================
+=  Vicente Arnau & Maria Dzunkova . 19-VI-2025    =
+===================================================
+
+SINTAX: ./CB  <options>  BARCODES_File  FASTQ_File >  Screen_output_File.txt
+
+<options>:
+ -l     : Number of nt parsed at the start and the end of a read
+ -s     : Number of reads showed on the screen
+ -bn    : Number of barcodes for group
+ -bs    : number of nucleotides per barcode (BARCODE_SIZE)
+ -ls    : number of nucleotides per link (LINK_SIZE)
+        : Screen_output_File.txt is optional
+````
+		
+	
+
 ## An example of how to run the program on the ``Atrandi_1k.fq`` file:
+
+If you do not have a FASTQ file to process, you can download for example the file ‘Atrandi_1k.fq’ from gitHub. This file has 1000 sequences with Atrandi barcodes at the ends of their sequences. At one or both ends.
+To run the CleanBar program on this file with 1000 sequences we will write:
 
 ````
 ./CB  barcodes.txt Atrandi_1k.fq
@@ -125,9 +128,17 @@ The CleanBar program will display on the screen the barcodes read from the Barco
 
 ## Another example of using CleanBar on the  ``Atrandi_4k.fastq`` file:
 
+
+The file Atrandi_4k.fastq has 4k sequences with barcodes at their ends. 
+We can process it with CleanBar, but first we must delete all the files in the "res_4barcodes" and "res_3barcodes" folders, because if we don't do it, the new sequences to process will be added to the files we already have created, if their barcodes match.
+That's why we will execute these two commands:
+
+
 ````
+sh prepare.sh
 ./CB   -s 50 -l 78 -bn 5 -bs 6  barcodes_s6.txt Atrandi_4k.fastq
 ````
+
 
 Now we're going to use CleanBar with a file containing 4 groups of 5 barcodes, each containing barcodes of only 6 nucleotides. 
 It will also only display the first 50 sequences analyzed. 
