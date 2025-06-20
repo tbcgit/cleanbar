@@ -137,7 +137,7 @@ That's why we will execute these two commands:
 
 ````
 sh prepare.sh
-./CB  barcodes.txt Atrandi_4k.fastq
+./CB -s 50 barcodes.txt Atrandi_4k.fastq
 ````
 
 If we want the CleanBar screen output, which includes the detail of how the barcodes are detected in the first 50 lines, we will run CleanBar as follows, generating a text file "screen.txt" where this information will be saved:
@@ -145,7 +145,7 @@ If we want the CleanBar screen output, which includes the detail of how the barc
 
 ````
 sh prepare.sh
-./CB  barcodes.txt Atrandi_4k.fastq  >  screen.txt
+./CB -s 50 barcodes.txt Atrandi_4k.fastq  >  screen.txt
 ````
 
 
@@ -226,4 +226,5 @@ sh prepare.sh
 ./CB   -s 40 -l 70 -bn 5 -bs -ls 6  barcodes_s6.txt Atrandi_4k.fastq
 ````
 
+As we can see, CleanBar is a very flexible programme that can be adapted to a wide variety of use cases.
 
