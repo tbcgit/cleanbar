@@ -145,7 +145,7 @@ If we want the CleanBar screen output, which includes the detail of how the barc
 ````
 sh prepare.sh
 ./CB  barcodes.txt Atrandi_4k.fastq  >  screen.txt
-```
+````
 
 
 ## Example of using CleanBar with a file with 20 barcodes per set.
