@@ -131,12 +131,22 @@ The CleanBar program will display on the screen the barcodes read from the Barco
 
 The file Atrandi_4k.fastq has 4k sequences with barcodes at their ends. 
 We can process it with CleanBar, but first we must delete all the files in the "res_4barcodes" and "res_3barcodes" folders, because if we don't do it, the new sequences to process will be added to the files we already have created, if their barcodes match.
+We also want to show how only the first 50 lines of Atrandi_4k.fastq are processed, so we will use the command ‘-s 50’.
 That's why we will execute these two commands:
 
 ````
 sh prepare.sh
 ./CB  barcodes.txt Atrandi_4k.fastq
 ````
+
+If we want the CleanBar screen output, which includes the detail of how the barcodes are detected in the first 50 lines, we will run CleanBar as follows, generating a text file "screen.txt" where this information will be saved:
+
+
+````
+sh prepare.sh
+./CB  barcodes.txt Atrandi_4k.fastq  >  screen.txt
+```
+
 
 ## Example of using CleanBar with a file with 20 barcodes per set.
 
@@ -203,15 +213,16 @@ H12 XXXXXXXX
 
 ## Another example:
 
+This is an extreme example of the use of CleanBar.
+Now we have a barcode file with only 5 barcodes per set and the barcodes are only 6 nucleotides long.
+And we want to analyse only the first 70 nucleotides of the test Fastq file. With link sequences of 6 nucleotides.
+And displaying on screen only the first 40 lines processed.
+We should run the following command:
+
 
 ````
 sh prepare.sh
-./CB   -s 50 -l 78 -bn 5 -bs 6  barcodes_s6.txt Atrandi_4k.fastq
+./CB   -s 40 -l 70 -bn 5 -bs -ls 6  barcodes_s6.txt Atrandi_4k.fastq
 ````
 
 
-
-
-Now we're going to use CleanBar with a file containing 4 groups of 5 barcodes, each containing barcodes of only 6 nucleotides. 
-It will also only display the first 50 sequences analyzed. 
-We will only analyze the first 78 nucleotides of each sequence.
