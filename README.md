@@ -133,11 +133,83 @@ The file Atrandi_4k.fastq has 4k sequences with barcodes at their ends.
 We can process it with CleanBar, but first we must delete all the files in the "res_4barcodes" and "res_3barcodes" folders, because if we don't do it, the new sequences to process will be added to the files we already have created, if their barcodes match.
 That's why we will execute these two commands:
 
+````
+sh prepare.sh
+./CB  barcodes.txt Atrandi_4k.fastq
+````
+
+## Example of using CleanBar with a file with 20 barcodes per set.
+
+We can download from GitHub the file "barcodes_20.txt" which has only 20 barcodes in each set. 
+If we want to process the example file "Atrandi_4k.fastq" using this barcodes file, we will have to tell the program on the run line that the barcodes file to be used now has only 20 barcodes. We will do it using the option "-bn 20" and the file "barcodes_20.txt.
+Also, we only want to display 60 lines per screen. We will indicate it with the option "-s 60".
+This way:
+
+
+````
+sh prepare.sh
+./CB   -s 60 -bn 20 barcodes_20.txt Atrandi_4k.fastq
+````
+
+## Example of using CleanBar with a file with only 3 sets of barcodes.
+
+
+Let's imagine that we now have an experiment that has made use of only 3 sets of barcodes. 
+And the third set, instead of having 24 barcodes, has only 20 barcodes.
+We can use the file "barcodes_xx.txt" that has the last set with the barcodes defined as "XXXXXXXXXX", so they will not be found in the sequence extresms.
+And as the third set of barcodes has only 20 barcodes defined, the remaining 4 barcodes will also be replaced by barcodes defined as "XXXXXXXXXX".
+This will be the content of the file "barcodes_xx.txt":
+
+````
+#Barcode A
+A1 GTAACCGA
+A2 TCCTCAAC
+A3 TGGTCTCA
+B1 GACAGCAT
+. . .
+H2 ATGTCTGC
+H3 ACAATCCG
+
+#Barcode B
+A4 TACAACCG
+A5 GCTGGATA
+A6 CATCGTTG
+. . .
+H4 GGAACTGT
+H5 TATGCGAC
+H6 TGTTGGAC
+
+#Barcode C
+A7 TACAGCAG
+A8 TTCGGTAG
+A9 GATACCGA
+ . . .
+G7 CGCTACTA
+G8 AAGGTGAC
+G9 XXXXXXXX
+H7 XXXXXXXX
+H8 XXXXXXXX
+H9 XXXXXXXX
+
+#Barcode D
+A10 XXXXXXXX
+A11 XXXXXXXX
+A12 XXXXXXXX
+ . . .
+N11 XXXXXXXX
+H12 XXXXXXXX
+````
+
+
+## Another example:
+
 
 ````
 sh prepare.sh
 ./CB   -s 50 -l 78 -bn 5 -bs 6  barcodes_s6.txt Atrandi_4k.fastq
 ````
+
+
 
 
 Now we're going to use CleanBar with a file containing 4 groups of 5 barcodes, each containing barcodes of only 6 nucleotides. 
