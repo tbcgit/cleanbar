@@ -47,10 +47,11 @@ which we can do by re-running the prepare.sh script
 
 The "prepare.sh" file has 3 lines of code. They are as follows:
 
+````
 mkdir  res_4barcodes  ||  rm -r  res_4barcodes/*.fq
 mkdir  res_23barcodes ||  rm -r  res_23barcodes/*.fq
 ./CB  --help  || ( gcc  -O2 -o CB  CleanBar.c &&  ./CB  --help )
-
+````
 
 The first line creates the "res_4barcodes" folder. If it already exists, it will delete all its files so that it can run CleanBar and save the new files with 4 matching barcodes in this folder. If we don't delete the files in the folder, the newly processed sequences will be added to the already created files.
 The second line does the same, but with the "res_23barcodes" folder, saving the reads with 2 or 3 matching barcodes in the same files.
