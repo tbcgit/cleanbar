@@ -1,21 +1,24 @@
 # CleanBar
 
-CleanBar is a flexible tool for demultiplexing reads tagged with sequentially ligated barcodes, accommodating variations in barcode positions and linker lengths while preventing misclassification of natural barcode-like sequences and handling diverse ligation errors. 
+CleanBar is a flexible tool for demultiplexing reads tagged with sequentially ligated barcodes, accommodating variations 
+in barcode positions and linker lengths while preventing misclassification of natural barcode-like sequences and handling diverse ligation errors. 
 It also provides statistics useful for optimizing laboratory procedures. 
 CleanBar is a program originally designed to process reads from the Atrandi platform, yet adaptable to a wide range of barcode configurations interspersed with any type of linker.
 CleanBar searches for barcodes from both ends of the sequence.
 
+To start using Cleanbar, you need to have a file in FASTQ format to be processed. 
+This file will contain barcodes at the ends of its sequences, in the direct sequence, in the complementary inverse sequence or at both ends.
+Create a working folder and copy your FASTQ file into it. 
+Download the CleanBar program into this folder. You should have a file with the barcodes you have used. 
+If you have used the Atrandi technology, you can use the file ``barcodes.txt`` that we provide you with. 
+Download it and put it in the same working folder as CleanBar and your FASTQ file.
 
-All sequences in which the same set of 4 barcodes has been detected are written to a single file, whose name is generated from the labels of the 4 barcodes found. 
-All these generated files are stored in the ``res_4barcodes`` folder.
+When using our ClenBar application, all sequences in your FASTQ file with the same set of 4 barcodes are written to a single file, whose name is generated from the labels of the 4 barcodes found and will be stored in the ``res_4barcodes`` folder.
 
+On the other hand, all analysed sequences with 2 or 3 identical barcodes are stored in a single file which will be stored in the ``res_23barcodes`` folder.
 
-On the other hand, all sequences analyzed with 2 or 3 identical barcodes are stored in different files in the ``res_23barcodes`` folder. 
-The file names are generated using the 3 or 2 labels shared by the sequences.
+If ``file_imput.fq`` is the name of your file to be analysed, a file ``file_input_1_0_bar.fq`` is generated with all readings where no barcodes have been detected at either end, or only one BARCODE. And the file ``file_input_3_2_bar.fq`` will be generated storing all the sequences where 3 or 2 barcodes have been detected.
 
-
-Additionally, a file ``<file_input>_1_0_bar.fq`` is generated with all the reads where no barcodes have been detected at either end.
-And ``<file_input>_3_2_bar.fq`` stores all the sequences in which 3 or 2 barcodes have been detected.
 
 ## How to used:
 First, create the folders ``res_4barcodes`` and ``res_23barcodes`` in your linux sistem:
