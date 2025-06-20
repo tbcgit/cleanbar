@@ -20,30 +20,28 @@ On the other hand, all analysed sequences with 2 or 3 identical barcodes are sto
 If ``file_imput.fq`` is the name of your file to be analysed, a file ``file_input_1_0_bar.fq`` is generated with all readings where no barcodes have been detected at either end, or only one BARCODE. And the file ``file_input_3_2_bar.fq`` will be generated storing all the sequences where 3 or 2 barcodes have been detected.
 
 
-## How to used:
-First, create the folders ``res_4barcodes`` and ``res_23barcodes`` in your linux sistem:
+## How to use CleanBar:
+
+The easiest way to use ClenBar is to download the file "preparer.sh" and run it in the working folder. 
+In this folder we must have the CleanBar.c file, our FASTQ file to analyse and the file with the barcodes to detect.
+To do this we will launch the following command:
 
 ````
-mkdir res_4barcodes
-mkdir res_23barcodes
+sh prepare.sh
 ````
+If we are going to use the Atrandi technology, we can download the file ‘barcodes.txt’ from this GirHub.
+After launching the "prepare.sh" script, a CB executable file will be generated that will accept at least two arguments, the file with the barcodes and the FASTQ file to be processed.
+If we don't have a FASTQ file, we can use the GitHub file "Atrandi_1k.fq" or "Atrandi_4k.fastq".
 
-Second, if the folders are already created, delete their contents:
+For example:
 
-````
-rm -r res_4barcodes
-rm -r res_23barcodes
-````
+./CB barcodes.txt Arandi_1k.fq
 
-Third, Download the "CleanBar.c", "Atrandi_1k.fq" and "barcodes.txt" files and copy them to your working folder.
+Every time we run the CB command again, it is necessary to delete all the files in the res_4barcodes and res_32_barcodes folders, 
+which we can do by re-running the prepare.sh script
+ 
 
-Finally, compile the CleanBar.c program and generate the CB executable using the program ggc, present in all the linux systems 
-
-````
-gcc  -O2 -o CB  CleanBar.c
-```` 
-
-For information on what arguments the program accepts, write:
+For information on what arguments the ``CleanBar`` program accepts, write:
 
 ````
 ./CB  --help
