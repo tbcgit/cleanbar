@@ -22,7 +22,7 @@ If ``file_imput.fq`` is the name of your file to be analysed, a file ``file_inpu
 
 ## How instal CleanBar:
 
-Installation from source:
+*Installation from source:*
 
 
 Clone GitHub repository of CleanBar:
@@ -47,7 +47,8 @@ Atrandi_1k.fq   CleanBar.c        README.md  barcodes_20.txt  barcodes_xx.txt
 ``
 
 We can copy our FASTQ file that we are going to process into this folder. 
-Or use the examples we have downloaded:  Atrandi_1k.fq or Atrandi_4k.fastq
+
+Or use the examples we have downloaded:  *Atrandi_1k.fq* or *Atrandi_4k.fastq*
 
 
 ## How to use CleanBar:
