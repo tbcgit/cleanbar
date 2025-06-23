@@ -22,6 +22,7 @@ If ``file_imput.fq`` is the name of your file to be analysed, a file ``file_inpu
 
 ## How instal CleanBar:
 
+
 **Installation from source:**
 
 
@@ -51,6 +52,7 @@ We can copy our FASTQ file that we are going to process into this folder.
 Or use the examples we have downloaded:  *Atrandi_1k.fq* or *Atrandi_4k.fastq*
 
 
+
 **Installation from Windows:**
 
 If you are a Windows or Mac user and a C or C++ programmer, you can download all the files from the repository 
@@ -58,10 +60,6 @@ to your work folder and compile the CleanBar.c program on your computer with you
 
 You will be able to work under the same conditions as if you had cloned this repository with GitHub.
 However, you must follow the same instructions described in GitHub.
-
-
-
-
 
 
 
@@ -151,6 +149,14 @@ SINTAX: ./CB  <options>  BARCODES_File  FASTQ_File >  Screen_output_File.txt
         : Screen_output_File.txt is optional
 ````
 		
+If you do not use any of the options provided by CleanBar, you should know that the default values are:
+
+- The number of nucleotides analysed at the ends of the sequences is 88.
+- The number of sequences that are displayed on the screen is 2000.
+- Each group has 24 BARCODES.
+- Each BARCODE has 8 nucleotides.
+- The separation between each BARCODE is 4 nucleotides.
+
 	
 
 ## An example of how to run the program on the ``Atrandi_1k.fq`` file:
