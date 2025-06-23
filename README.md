@@ -22,7 +22,7 @@ If ``file_imput.fq`` is the name of your file to be analysed, a file ``file_inpu
 
 ## How instal CleanBar:
 
-*Installation from source:*
+_Installation from source:_
 
 
 Clone GitHub repository of CleanBar:
