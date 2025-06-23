@@ -19,6 +19,7 @@ On the other hand, all analysed sequences with 2 or 3 identical barcodes are sto
 
 If ``file_imput.fq`` is the name of your file to be analysed, a file ``file_input_1_0_bar.fq`` is generated with all readings where no barcodes have been detected at either end, or only one BARCODE. And the file ``file_input_3_2_bar.fq`` will be generated storing all the sequences where 3 or 2 barcodes have been detected.
 
+
 ## How instal CleanBar:
 
 Installation from source:
@@ -40,9 +41,10 @@ Display the files in the working folder:
  dir
 ````
 
+``
 Atrandi_100.fq  Atrandi_4k.fastq  LICENSE    barcodes.txt     barcodes_s6.txt  prepare.sh
 Atrandi_1k.fq   CleanBar.c        README.md  barcodes_20.txt  barcodes_xx.txt
-
+``
 
 We can copy our FASTQ file that we are going to process into this folder. 
 Or use the examples we have downloaded:  Atrandi_1k.fq or Atrandi_4k.fastq
