@@ -40,12 +40,10 @@ Display the files in the working folder:
 
 ````
  dir
-````
-
-``
+ 
 Atrandi_100.fq  Atrandi_4k.fastq  LICENSE    barcodes.txt     barcodes_s6.txt  prepare.sh
 Atrandi_1k.fq   CleanBar.c        README.md  barcodes_20.txt  barcodes_xx.txt
-``
+````
 
 We can copy our FASTQ file that we are going to process into this folder. 
 
