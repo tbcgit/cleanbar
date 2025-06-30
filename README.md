@@ -6,24 +6,28 @@ CleanBar is a flexible tool for demultiplexing reads tagged with sequentially li
 
 To use CleanBar, you will need:
 
-- A FASTQ file containing your sequence data.
-- A barcodes.txt file listing the barcodes used.
+- FASTQ file containing your sequence data, which must be previously quality-filtered
+- ``barcodes.txt`` file listing the barcodes which were used in the assay
 
 We provide a ``barcodes.txt`` file for the Atrandi platform, which can be used directly if your reads were generated using this system. If you're working with data from a different split-and-pool barcoding platform, please refer to the section "How to adapt CleanBar to other split-and-pool barcoding platforms" for instructions on how to generate a compatible ``barcodes.txt`` file.
 
-# How to use CleanBar
+# How does CleanBar work?
 
-Create a working folder and copy your FASTQ file into it. Download the following to the same folder:
-``CleanBar.c``
-``barcodes.txt``
-``prepare.sh``
+CleanBar searches for the barcodes on both ends of the sequence. It creates FASTQ files with ....
 
 When using our ClenBar application, all sequences in your FASTQ file with the same set of 4 barcodes are written to a single file, whose name is generated from the labels of the 4 barcodes found and will be stored in the ``res_4barcodes`` folder.
 
 On the other hand, all analysed sequences with 2 or 3 identical barcodes are stored in a single file which will be stored in the ``res_23barcodes`` folder.
 
-If ``file_imput.fq`` is the name of your file to be analysed, a file ``file_input_1_0_bar.fq`` is generated with all readings where no barcodes have been detected at either end, or only one BARCODE. And the file ``file_input_3_2_bar.fq`` will be generated storing all the sequences where 3 or 2 barcodes have been detected.
+If ``file_input.fq`` is the name of your file to be analysed, a file ``file_input_1_0_bar.fq`` is generated with all readings where no barcodes have been detected at either end, or only one BARCODE. And the file ``file_input_3_2_bar.fq`` will be generated storing all the sequences where 3 or 2 barcodes have been detected.
 
+
+# How to use CleanBar?
+
+Create a working folder and copy your FASTQ file into it. Download the following to the same folder:
+- ``CleanBar.c``
+- ``barcodes.txt`` (or create your own following the instructions in the section "How to adapt CleanBar to other split-and-pool barcoding platforms")
+- ``prepare.sh``
 
 ## How instal CleanBar:
 
