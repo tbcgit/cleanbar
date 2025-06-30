@@ -1,16 +1,22 @@
 # CleanBar
 
-CleanBar is a flexible tool for demultiplexing reads tagged with sequentially ligated barcodes (split-and-pool barcoding). It searches for barcodes from both ends of the sequence and accommodates variations in barcode positions and linker lengths, while preventing misclassification of natural barcode-like sequences and handling diverse ligation errors. It also provides statistics useful for optimizing laboratory procedures. CleanBar was originally designed to process reads from the Atrandi platform, however, it is adaptable to a wide range of barcode configurations interspersed with any type of linker. 
+CleanBar is a flexible tool for demultiplexing reads tagged with sequentially ligated barcodes (split-and-pool barcoding). It searches for barcodes at both ends of the sequence, accommodates variation in barcode positions and linker lengths, handles diverse ligation errors, and minimizes misclassification of natural barcode-like sequences. It also provides statistics to help optimize laboratory protocols. CleanBar was originally developed to process reads from the Atrandi platform, but it is adaptable to a wide range of barcode configurations and linker types.
 
-# What do you need to start?
-You need a FASTQ file with your sequence data. You will also need to create a text file with the barcodes (barcodes.txt). We provide the barcodes.txt file for the Atrandi platform, so if you want to use it for demultiplexing of reads processed by this platform, you can use the barcodes.txt file directly. If you wish to apply CleanBar for demultiplexing reads barcoded by other platform, please, see the instructions in the section "How to adapt CleanBar to other split-and-pool barcoding platforms" 
+# What do you need to get started?
+
+To use CleanBar, you will need:
+
+- A FASTQ file containing your sequence data.
+- A barcodes.txt file listing the barcodes used.
+
+We provide a ``barcodes.txt`` file for the Atrandi platform, which can be used directly if your reads were generated using this system. If you're working with data from a different split-and-pool barcoding platform, please refer to the section "How to adapt CleanBar to other split-and-pool barcoding platforms" for instructions on how to generate a compatible ``barcodes.txt`` file.
 
 # How to use CleanBar
 
-Create a working folder and copy your FASTQ file into it. 
-Download the CleanBar program into this folder. You should have a file with the barcodes you have used. 
-If you have used the Atrandi technology, you can use the file ``barcodes.txt`` that we provide you with. 
-Download it and put it in the same working folder as CleanBar and your FASTQ file.
+Create a working folder and copy your FASTQ file into it. Download the following to the same folder:
+``CleanBar.c``
+``barcodes.txt``
+``prepare.sh``
 
 When using our ClenBar application, all sequences in your FASTQ file with the same set of 4 barcodes are written to a single file, whose name is generated from the labels of the 4 barcodes found and will be stored in the ``res_4barcodes`` folder.
 
