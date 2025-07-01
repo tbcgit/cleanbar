@@ -70,7 +70,7 @@ mkdir  res_23barcodes ||  rm -r  res_23barcodes/*.fq
 
 ## Running CleanBar
 
-You can use one of our FASTQ examples in the GitHub repository for testing, for example ``Atrandi_1k.fq``. The command for running the CleanBar is simple: 
+Here we show how to run CleanBar using one of our example FASTQ files, Atrandi_1k.fq. The command is simple: it starts with ./CB, followed by the barcode list file barcodes.txt, and then your input FASTQ file:
 
 ````
 ./CB barcodes.txt Arandi_1k.fq
@@ -102,16 +102,26 @@ SINTAX: ./CB  <options>  BARCODES_File  FASTQ_File >  Screen_output_File.txt
  -ls    : number of nucleotides per link (LINK_SIZE)
         : Screen_output_File.txt is optional
 ````
-		
-If you do not use any of the options provided by CleanBar, you should know that the default values are:
 
-- The number of nucleotides analysed at the ends of the sequences is 88.
-- The number of sequences that are displayed on the screen is 2000.
-- Each group has 24 BARCODES.
-- Each BARCODE has 8 nucleotides.
-- The separation between each BARCODE is 4 nucleotides.
+If you use the Atrandi platform, you do not need to modify these arguments. The default options are the following:
 
-	
+``-l 88``  Number of nucleotides analyzed at each end of the sequence.
+``-s`` Number of reads showed on the screen by default is 2000.
+``-bn 24`` Number of barcodes for group. Each group contains by default 24 barcodes.
+``-bs 8`` Number of nucleotides per barcode. Each barcode is 8 nucleotides long.
+``-ls 8`` Number of nucleotides per linker. The separation between barcodes (linker length) is 4 nucleotides. This is the expected value only, because CleanBar indicates the exact linker lengts in its output file. 
+
+
+
+
+
+
+
+
+
+
+
+ 
 
 ## An example of how to run the program on the ``Atrandi_1k.fq`` file:
 
