@@ -2,6 +2,7 @@
 
 CleanBar is a flexible tool for demultiplexing reads tagged with sequentially ligated barcodes (split-and-pool barcoding). It searches for barcodes at both ends of the sequence, accommodates variation in barcode positions and linker lengths, handles diverse ligation errors, and minimizes misclassification of natural barcode-like sequences. It also provides statistics to help optimize laboratory protocols. CleanBar was originally developed to process reads from the Atrandi platform, but it is adaptable to a wide range of barcode configurations and linker types.
 
+
 ## How does CleanBar work?
 
 ### Detection of complete barcode strings
@@ -17,6 +18,7 @@ Although incomplete barcode strings do not offer single-cell resolution, some us
 Reads with only one detected barcode are not saved in separate FASTQ files. This is because any 8 bp sequence has a ~0.25% chance of occurring naturally in DNA, offering no strong evidence that the match resulted from the barcoding process. Instead, these reads are grouped together with reads that contain no barcodes in a separate file named ``<filename>_0_1.fastq``, where ``<filename>`` corresponds to the name of the input FASTQ file. While sequences in this file lack single-cell resolution, they are still valuable and should not be discarded. They can support bulk-level analyses, similar to those performed in conventional metagenomics.
 
 
+
 ## What do you need to get started?
 
 To use CleanBar, you will need:
@@ -25,6 +27,7 @@ To use CleanBar, you will need:
 - ``barcodes.txt`` file listing the barcodes used in your assay.
 
 We provide a ``barcodes.txt`` file for the Atrandi platform, based on the SINGLE-MICROBE DNA BARCODING protocol (Doc. No. DGPM02323206001). If your data were generated using this system, you can use the file directly. If you're working with data from a different split-and-pool barcoding platform, please refer to the section "How to use CleanBar with other split-and-pool barcoding platforms?" in this manual for instructions on how to generate a compatible ``barcodes.txt`` file.
+
   
 ## How to install CleanBar?
 
@@ -65,6 +68,7 @@ mkdir  res_23barcodes ||  rm -r  res_23barcodes/*.fq
 ### Installation in Windows:
 
 If you're using Windows or macOS and have experience with C or C++ programming, you can manually download all the necessary files from this repository to your working directory and compile CleanBar.c using your preferred C compiler. Once compiled, you will be able to run CleanBar under the same conditions as if you had cloned the repository via GitHub. Simply follow the same usage instructions described in this manual.
+
 
 ## Running CleanBar
 
@@ -181,6 +185,7 @@ bash prepare.sh
 ````
 
 
+
 ## How to use CleanBar with other split-and-pool barcoding platforms?
 
 CleanBar's default setting are specificaly set to detect Atrandi barcodes, which consist of 8 bp sequences generated through 4 rounds of ligation, with each ligation round using groups of 24 barcodes. But what if the barcodes used in your assay have a different length than the 8 bp used in the Atrandi platform? Or what if your split-and-pool barcoding setup uses only three rounds of ligation? Or what if each group contains 96 barcodes instead of 24? We provide some examples of how to proceed:
@@ -216,7 +221,9 @@ Here is an example command line for an extreme barcoding assay, where each barco
 ````
 bash prepare.sh
 ./CB   -s 40 -l 158 -bn 96 -bs 20 -ls 6  modified_barcodes.txt input.fastq
-````
+`
+```
+
 ## Citation:
 If you use CleanBar program, please, cite our article:
 
