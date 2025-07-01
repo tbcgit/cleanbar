@@ -42,16 +42,7 @@ Create a working folder and place your FASTQ file there. In addition, your worki
 - ``CleanBar.c``
 - ``prepare.sh``
 
-
-
-
-
-## How to use CleanBar:
-
-The easiest way to use ClenBar is to download the file "preparer.sh" and run it in the working folder. 
-In this folder we must have the CleanBar.c file, our FASTQ file to analyse and the file with the barcodes to detect.
-To do this we will launch the following command:
-
+Run the prepare command, which will create folders "res_4barcodes" and "res_23barcodes" and compiles  
 ````
 sh prepare.sh
 ````
