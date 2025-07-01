@@ -34,13 +34,25 @@ We provide a ``barcodes.txt`` file for the Atrandi platform, based on the SINGLE
 ````
  git clone  https://github.com/tbcgit/cleanbar
 ````
+
+**Installation from Windows:**
+
+If you are a Windows or Mac user and a C or C++ programmer, you can download all the files from the repository 
+to your work folder and compile the CleanBar.c program on your computer with your usual C compiler.
+
+You will be able to work under the same conditions as if you had cloned this repository with GitHub.
+However, you must follow the same instructions described in GitHub.
+
+
+
+## Setup:
+
 Move to the cleanbar folder:
 
 ````
 cd  cleanbar
 ````
 
-##### Setup:
 Place your FASTQ file in the ``cleanbar`` folder. Alternatively, you can create your own working directory, but make sure that the following files are present in that folder:
 
 - ``barcodes.txt`` (use the provided file or your own)
@@ -73,13 +85,7 @@ which we can do by re-running the prepare.sh script
 
 
 
-**Installation from Windows:**
 
-If you are a Windows or Mac user and a C or C++ programmer, you can download all the files from the repository 
-to your work folder and compile the CleanBar.c program on your computer with your usual C compiler.
-
-You will be able to work under the same conditions as if you had cloned this repository with GitHub.
-However, you must follow the same instructions described in GitHub.
 
 
 
