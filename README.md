@@ -47,7 +47,7 @@ Clone GitHub repository of CleanBar:
  git clone  https://github.com/tbcgit/cleanbar
 ````
 
-We access the ‘cleanbar’ work folder.
+Go to the ‘cleanbar’ work folder:
 ````
  cd cleanbar
 ````
