@@ -55,7 +55,7 @@ Place your FASTQ file in the ``cleanbar`` folder. Alternatively, you can create 
 - ``CleanBar.c``
 - ``prepare.sh``
 
-Run the prepare command, which will compile the ``CleanBar.c`` program and create folders ``res_4barcodes`` and ``res_23barcodes``.  If these folders already exists, CleanBar will delete their content. 
+Run the ``prepare.sh`` command, which will compile the ``CleanBar.c`` program and create folders ``res_4barcodes`` and ``res_23barcodes``.  If these folders already exists, CleanBar will delete their content. 
 
 ````
 bash prepare.sh
@@ -68,32 +68,15 @@ mkdir  res_4barcodes  ||  rm -r  res_4barcodes/*.fq
 mkdir  res_23barcodes ||  rm -r  res_23barcodes/*.fq
 ````
 
-## 
-You can use one of our example files for testing, 
-If we are going to use the Atrandi technology, we can download the file ‘barcodes.txt’ from this GitHub.
-After launching the "prepare.sh" script, a CB executable file will be generated that will accept at least two arguments, the file with the barcodes and the FASTQ file to be processed.
-If we don't have a FASTQ file, we can use the GitHub file "Atrandi_1k.fq" or "Atrandi_4k.fastq".
+## Running CleanBar
 
-For example:
+You can use one of our FASTQ examples in the GitHub repository for testing, for example ``Atrandi_1k.fq``. The command for running the CleanBar is simple: 
 
 ````
 ./CB barcodes.txt Arandi_1k.fq
 ````
 
-Every time we run the CB command again, it is necessary to delete all the files in the res_4barcodes and res_32_barcodes folders, 
-which we can do by re-running the prepare.sh script
- 	
-
-
-
-
-
-
-
-
-## An example of how to view the CleanBar options:
-
-For information on what arguments the ``CleanBar`` program accepts, write:
+For information on what arguments the CleanBar accepts, write:
 
 ````
 ./CB  --help
