@@ -35,7 +35,7 @@ Use the "clone" command:
  git clone  https://github.com/tbcgit/cleanbar
 ````
 
-### Setup
+### Setup:
 
 Move to the cleanbar folder:
 
@@ -188,9 +188,9 @@ sh prepare.sh
 
 
 
+## How to use CleanBar with other split-and-pool barcoding platforms?
 
-
-## Example of using CleanBar with a file with 20 barcodes per set.
+### Example of using CleanBar with a file with 20 barcodes per set.
 
 We can download from GitHub the file "barcodes_20.txt" which has only 20 barcodes in each set. 
 If we want to process the example file "Atrandi_4k.fastq" using this barcodes file, we will have to tell the program on the run line that the barcodes file to be used now has only 20 barcodes. We will do it using the option "-bn 20" and the file "barcodes_20.txt.
@@ -202,8 +202,8 @@ This way:
 sh prepare.sh
 ./CB   -s 60 -bn 20 barcodes_20.txt Atrandi_4k.fastq
 ````
-# How to adapt CleanBar to other split-and-pool barcoding platforms
-## Example of using CleanBar with a file with only 3 sets of barcodes.
+
+### Example of using CleanBar with a file with only 3 sets of barcodes.
 
 
 Let's imagine that we now have an experiment that has made use of only 3 sets of barcodes. 
@@ -253,7 +253,7 @@ H12 XXXXXXXX
 ````
 
 
-## Another example:
+### Another example:
 
 This is an extreme example of the use of CleanBar.
 Now we have a barcode file with only 5 barcodes per set and the barcodes are only 6 nucleotides long.
