@@ -177,95 +177,44 @@ If you use the Atrandi platform, you do not need to modify these arguments. The 
 For example, if you want to see only 50 sequences in the screen output, the command would be the following:
 
 ````
-sh prepare.sh
+bash prepare.sh
 ./CB -s 50 barcodes.txt Atrandi_4k.fastq
 ````
 
 
-
- 
-
-
-
-
 ## How to use CleanBar with other split-and-pool barcoding platforms?
 
-### Example of using CleanBar with a file with 20 barcodes per set.
+CleanBar's default setting are specificaly set to detect Atrandi barcodes, which consist of 8 bp sequences generated through 4 rounds of ligation, with each ligation round using groups of 24 barcodes. But what if the barcodes used in your assay have a different length than the 8 bp used in the Atrandi platform? Or what if your split-and-pool barcoding setup uses only three rounds of ligation? Or what if each group contains 96 barcodes instead of 24? We provide some examples of how to proceed:
 
-We can download from GitHub the file "barcodes_20.txt" which has only 20 barcodes in each set. 
-If we want to process the example file "Atrandi_4k.fastq" using this barcodes file, we will have to tell the program on the run line that the barcodes file to be used now has only 20 barcodes. We will do it using the option "-bn 20" and the file "barcodes_20.txt.
-Also, we only want to display 60 lines per screen. We will indicate it with the option "-s 60".
-This way:
-
+### Using four barcode groups with a custom number of barcodes per group:
+To adjust CleanBar for barcode groups of a different size, modify the ``barcodes.txt`` file and update the command with the ``-bn`` flag. We provide a sample file called ``barcodes_bn20.txt``, where each group contains only 20 barcodes. When creating your own ``barcodes.txt`` file, make sure the formatting is correct. Each group must begin with a header line such as ``#Barcode A``, ``#Barcode B``, and so on. Groups should be separated by an empty line. Each barcode entry must be on its own line, starting with a barcode label followed by the sequence, separated by a space, for example, ``A1 GTAACCGA``.
 
 ````
-sh prepare.sh
-./CB   -s 60 -bn 20 barcodes_20.txt Atrandi_4k.fastq
+bash prepare.sh
+./CB   -bn 20 barcodes_bn20.txt Atrandi_4k.fastq
 ````
 
-### Example of using CleanBar with a file with only 3 sets of barcodes.
-
-
-Let's imagine that we now have an experiment that has made use of only 3 sets of barcodes. 
-And the third set, instead of having 24 barcodes, has only 20 barcodes.
-We can use the file "barcodes_xx.txt" that has the last set with the barcodes defined as "XXXXXXXXXX", so they will not be found in the sequence extresms.
-And as the third set of barcodes has only 20 barcodes defined, the remaining 4 barcodes will also be replaced by barcodes defined as "XXXXXXXXXX".
-This will be the content of the file "barcodes_xx.txt":
+### Using four barcode groups, but two groups contains a lower number of barcodes:
+In this example, the barcodes are arranged as follows: group A with 24 barcodes, group B with 24 barcodes, group C with 12 barcodes, and group D with 12 barcodes. CleanBar requires each group to have the same number of barcodes, and the ``-bn`` option accepts only a single value, which must be the highest number of barcodes used in any group. Therefore, the ``barcodes.txt`` file must include placeholder barcodes, such as ``H12 XXXXXXXX``, to fill out the shorter groups. This format is illustrated in the example file ``barcodes_halfxx.txt``. If the maximum number of barcodes per group remains at the default (24), and both the barcode length and expected linker length match the default settings (8 and 4), there is no need to modify the default CleanBar command, you only need to use the modified barcode list: 
 
 ````
-#Barcode A
-A1 GTAACCGA
-A2 TCCTCAAC
-A3 TGGTCTCA
-B1 GACAGCAT
-. . .
-H2 ATGTCTGC
-H3 ACAATCCG
-
-#Barcode B
-A4 TACAACCG
-A5 GCTGGATA
-A6 CATCGTTG
-. . .
-H4 GGAACTGT
-H5 TATGCGAC
-H6 TGTTGGAC
-
-#Barcode C
-A7 TACAGCAG
-A8 TTCGGTAG
-A9 GATACCGA
- . . .
-G7 CGCTACTA
-G8 AAGGTGAC
-G9 XXXXXXXX
-H7 XXXXXXXX
-H8 XXXXXXXX
-H9 XXXXXXXX
-
-#Barcode D
-A10 XXXXXXXX
-A11 XXXXXXXX
-A12 XXXXXXXX
- . . .
-N11 XXXXXXXX
-H12 XXXXXXXX
+bash prepare.sh
+./CB  barcodes_halfxx.txt Atrandi_4k.fastq
 ````
 
-
-### Another example:
-
-This is an extreme example of the use of CleanBar.
-Now we have a barcode file with only 5 barcodes per set and the barcodes are only 6 nucleotides long.
-And we want to analyse only the first 70 nucleotides of the test Fastq file. With link sequences of 6 nucleotides.
-And displaying on screen only the first 40 lines processed.
-We should run the following command:
-
+### Using only three barcode groups with non-default barcode and linker lengths:
+If your barcodes and linkers have lengths different from the default values, you must modify the ``barcodes.txt`` file and update the command with the ``-bs`` and ``-ls`` flags. If the resulting expected total length of the barcodes string is different from default, you should also modify the search length with the ``-l`` flag. 
+In this example file ``barcodes_bs12_ls6_xx.txt``, there are three groups of barcodes, individual barcodes have size of 12 bp and the expected length of linkers between them is 6 bp, this means that the expected length of the ocmplete string is 12 + 6 + 12 + 6 + 12 = 48 bp. The string in our example is longer that the string formed by the Atrandi platform (8 + 4 + 8 + 4 + 8 + 4 + 8 = 44 bp), thus it would be convenient to increase the seach length from the default 88 to 92 by the ``-l`` flag. Please note that the ``barcodes.txt`` file must always contain four groups of barcodes. Therefore, in our example file ``barcodes_bs12_ls6_xx.txt``, the barcodes listed under the ``#Barcode D`` group contain placeholder sequences, such as ``A10 XXXXXXXXXXXX``. 
 
 ````
-sh prepare.sh
-./CB   -s 40 -l 70 -bn 5 -bs -ls 6  barcodes_s6.txt Atrandi_4k.fastq
+bash prepare.sh
+./CB   -l 92 -bs 12 -ls 6 barcodes_bs12_ls6_xx.txt Atrandi_4k.fastq
 ````
 
-As we can see, CleanBar is a very flexible programme that can be adapted to a wide variety of use cases.
+### Combining all options:
+Here is an example command line for an extreme barcoding assay, where each barcode group contains up to 96 barcodes  ``-bn 96``, the barcode size is 20 bp ``-bs 20``, and the expected linker length is 6 bp ``-ls 6``.  The assay uses four rounds of ligation, so the expected total barcode string length is calculated as: 24 + 6 + 24 + 6 + 24 + 6 + 24 = 114 bp. Since the default search length is 88 (corresponding to the default expected string length of 44), it should be increased to at least 158 (114 + 44) using the ``-l 158`` flag. In this example, we also limit the screen output to 40 sequences with ``-s 40``. The flags should be used in the following order:
 
+````
+bash prepare.sh
+./CB   -s 40 -l 158 -bn 96 -bs 20 -ls 6  modified_barcodes.txt input.fastq
+````
