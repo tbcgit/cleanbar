@@ -26,7 +26,7 @@ To use CleanBar, you will need:
 
 We provide a ``barcodes.txt`` file for the Atrandi platform, based on the SINGLE-MICROBE DNA BARCODING protocol (Doc. No. DGPM02323206001). If your data were generated using this system, you can use the file directly. If you're working with data from a different split-and-pool barcoding platform, please refer to the section "How to adapt CleanBar to other split-and-pool barcoding platforms" in this manual for instructions on how to generate a compatible ``barcodes.txt`` file.
   
-## How install CleanBar:
+## How to install CleanBar?
 
 ### Installation from source:
 
@@ -35,13 +35,7 @@ Use the "clone" command:
  git clone  https://github.com/tbcgit/cleanbar
 ````
 
-### Installation in Windows:
-
-If you're using Windows or macOS and have experience with C or C++ programming, you can manually download all the necessary files from this repository to your working directory and compile CleanBar.c using your preferred C compiler. Once compiled, you will be able to run CleanBar under the same conditions as if you had cloned the repository via GitHub. Simply follow the same usage instructions described in this manual.
-
-
-
-## Setup:
+### Setup
 
 Move to the cleanbar folder:
 
@@ -67,6 +61,10 @@ Each time you run CleanBar in the same directory, you must either delete these f
 mkdir  res_4barcodes  ||  rm -r  res_4barcodes/*.fq
 mkdir  res_23barcodes ||  rm -r  res_23barcodes/*.fq
 ````
+
+### Installation in Windows:
+
+If you're using Windows or macOS and have experience with C or C++ programming, you can manually download all the necessary files from this repository to your working directory and compile CleanBar.c using your preferred C compiler. Once compiled, you will be able to run CleanBar under the same conditions as if you had cloned the repository via GitHub. Simply follow the same usage instructions described in this manual.
 
 ## Running CleanBar
 
