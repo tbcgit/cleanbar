@@ -35,13 +35,9 @@ We provide a ``barcodes.txt`` file for the Atrandi platform, based on the SINGLE
  git clone  https://github.com/tbcgit/cleanbar
 ````
 
-**Installation from Windows:**
+### Installation in Windows:
 
-If you are a Windows or Mac user and a C or C++ programmer, you can download all the files from the repository 
-to your work folder and compile the CleanBar.c program on your computer with your usual C compiler.
-
-You will be able to work under the same conditions as if you had cloned this repository with GitHub.
-However, you must follow the same instructions described in GitHub.
+If you're using Windows or macOS and have experience with C or C++ programming, you can manually download all the necessary files from this repository to your working directory and compile CleanBar.c using your preferred C compiler. Once compiled, you will be able to run CleanBar under the same conditions as if you had cloned the repository via GitHub. Simply follow the same usage instructions described in this manual.
 
 
 
@@ -59,12 +55,18 @@ Place your FASTQ file in the ``cleanbar`` folder. Alternatively, you can create 
 - ``CleanBar.c``
 - ``prepare.sh``
 
-Run the prepare command, which will compile the "CleanBar.c" program and create folders "res_4barcodes" and "res_23barcodes".  If these folders already exists, CleanBar will delete their content. Each time you run CleanBar in the same directory, you must either delete these folders manually using the "rm" command, or simply run the "prepare.sh" script again, which handles this automatically.
+Run the prepare command, which will compile the "CleanBar.c" program and create folders "res_4barcodes" and "res_23barcodes".  If these folders already exists, CleanBar will delete their content. 
+
 ````
 bash prepare.sh
 ````
 
+Each time you run CleanBar in the same directory, you must either delete these folders and create new ones manually using the commands below, or simply run the "prepare.sh" script again, which handles this automatically.
 
+````
+mkdir  res_4barcodes  ||  rm -r  res_4barcodes/*.fq
+mkdir  res_23barcodes ||  rm -r  res_23barcodes/*.fq
+````
 
 ## 
 You can use one of our example files for testing, 
