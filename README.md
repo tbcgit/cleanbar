@@ -221,8 +221,7 @@ Here is an example command line for an extreme barcoding assay, where each barco
 ````
 bash prepare.sh
 ./CB   -s 40 -l 158 -bn 96 -bs 20 -ls 6  modified_barcodes.txt input.fastq
-`
-```
+````
 
 ## Citation:
 If you use CleanBar program, please, cite our article:
