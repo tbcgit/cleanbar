@@ -30,7 +30,7 @@ We provide a ``barcodes.txt`` file for the Atrandi platform, based on the SINGLE
 
 ### Installation from source:
 
-#### Use the "clone" command:
+Use the "clone" command:
 ````
  git clone  https://github.com/tbcgit/cleanbar
 ````
