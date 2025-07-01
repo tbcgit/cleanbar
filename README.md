@@ -36,44 +36,15 @@ Create a working folder and place your FASTQ file there. Download the following 
 - ``CleanBar.c``
 - ``prepare.sh``
 
-## How instal CleanBar:
-
-
-**Installation from source:**
-
-
-Clone GitHub repository of CleanBar:
+You can download all files in the CleanBar GutHub repository, including the examples, using the "clone" command:
 ````
  git clone  https://github.com/tbcgit/cleanbar
 ````
 
-Go to the ‘cleanbar’ work folder:
-````
- cd cleanbar
-````
 
-Display the files in the working folder:
-
-````
- dir
- 
-Atrandi_100.fq  Atrandi_4k.fastq  LICENSE    barcodes.txt     barcodes_s6.txt  prepare.sh
-Atrandi_1k.fq   CleanBar.c        README.md  barcodes_20.txt  barcodes_xx.txt
-````
-
-We can copy our FASTQ file that we are going to process into this folder. 
-
-Or use the examples we have downloaded:  *Atrandi_1k.fq* or *Atrandi_4k.fastq*
+## How instal CleanBar:
 
 
-
-**Installation from Windows:**
-
-If you are a Windows or Mac user and a C or C++ programmer, you can download all the files from the repository 
-to your work folder and compile the CleanBar.c program on your computer with your usual C compiler.
-
-You will be able to work under the same conditions as if you had cloned this repository with GitHub.
-However, you must follow the same instructions described in GitHub.
 
 
 
@@ -87,7 +58,7 @@ To do this we will launch the following command:
 ````
 sh prepare.sh
 ````
-If we are going to use the Atrandi technology, we can download the file ‘barcodes.txt’ from this GirHub.
+If we are going to use the Atrandi technology, we can download the file ‘barcodes.txt’ from this GitHub.
 After launching the "prepare.sh" script, a CB executable file will be generated that will accept at least two arguments, the file with the barcodes and the FASTQ file to be processed.
 If we don't have a FASTQ file, we can use the GitHub file "Atrandi_1k.fq" or "Atrandi_4k.fastq".
 
@@ -133,6 +104,18 @@ or
 ````
 bash prepare.sh
 ````
+
+
+
+**Installation from Windows:**
+
+If you are a Windows or Mac user and a C or C++ programmer, you can download all the files from the repository 
+to your work folder and compile the CleanBar.c program on your computer with your usual C compiler.
+
+You will be able to work under the same conditions as if you had cloned this repository with GitHub.
+However, you must follow the same instructions described in GitHub.
+
+
 
 ## An example of how to view the CleanBar options:
 
