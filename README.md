@@ -2,18 +2,27 @@
 
 CleanBar is a flexible tool for demultiplexing reads tagged with sequentially ligated barcodes (split-and-pool barcoding). It searches for barcodes at both ends of the sequence, accommodates variation in barcode positions and linker lengths, handles diverse ligation errors, and minimizes misclassification of natural barcode-like sequences. It also provides statistics to help optimize laboratory protocols. CleanBar was originally developed to process reads from the Atrandi platform, but it is adaptable to a wide range of barcode configurations and linker types.
 
-# What do you need to get started?
+## How does CleanBar work?
+
+On the Atrandi platform, barcodes are ligated in the order A, B, C, D. CleanBar starts its search with barcode D, as this is the last barcode added to the string. After detection of the barcode D, CleanBar begins searching for a sequence corresponding to barcode C starting from the last nucleotide of the identified barcode D, followed by a search for barcode B from the end of barcode C, and finally for barcode A from the last nucleotide of barcode B. Within each barcode set, CleanBar selects the barcode detected at the closest distance from the preceding barcode. Additionally, the program calculates the distances between the detected barcodes, corresponding to the linker length.
+
+The expected barcode string length produced by the Atrandi platform is 44 bp, corresponding to four 8 bp barcodes and three 4 bp linkers. Barcodes do not necessarily start at the beginning of the read, as sequencing adapters may not have been trimmed properly. Additionally, the total barcode length may deviate slightly from 44 bp due to ligation errors. Some of these (rare) errors include incomplete barcode strings or linkers that are not exactly 4 bp long. CleanBar is specifically designed to handle such cases and ensure reliable barcode detection under these conditions.
+
+CleanBar searches for barcodes on both ends of each read in the input FASTQ file. It uses exact string matching, without allowing mismatches or indels. The barcode string found at one or both ends is trimmed, and the sequence is saved in a FASTQ file with a name corresponding to the identified barcodes, for example read containing barcode D with label E10, barcode C with label E8, barcode B with label C6 and barcode A with label B2 will be saved with file name ``ff_E10_E8_C6_B2.fq``. If a read contains D-C-B-A barcodes on both ends, and the D-C-B-A string is detected in the reverse complement sequence, the read is assigned to the FASTQ file named after the barcodes identified in the forward (direct) sequence. Each read appears in the output FASTQ file only once, regardless of whether the barcode string was found on one or both ends.
+
+## What do you need to get started?
 
 To use CleanBar, you will need:
 
-- FASTQ file containing your sequence data, which must be previously quality-filtered
-- ``barcodes.txt`` file listing the barcodes which were used in the assay
+- FASTQ file containing your sequence data from your spint-and-pool barcodign assay, which must be previously quality-filtered
+- ``barcodes.txt`` file listing the barcodes which were used in your assay 
 
-We provide a ``barcodes.txt`` file for the Atrandi platform, which can be used directly if your reads were generated using this system. If you're working with data from a different split-and-pool barcoding platform, please refer to the section "How to adapt CleanBar to other split-and-pool barcoding platforms" for instructions on how to generate a compatible ``barcodes.txt`` file.
+Herein we provide the ``barcodes.txt`` file for the Atrandi platform (they come from the SINGLE-MICROBE DNA BARCODING protocol, Doc. No. DGPM02323206001), which can be used directly if your reads were generated using this system. If you are working with data from a different split-and-pool barcoding platform, please refer to the section "How to adapt CleanBar to other split-and-pool barcoding platforms" in this manual for instructions on how to generate a compatible ``barcodes.txt`` file.
 
-# How does CleanBar work?
 
-CleanBar searches for the barcodes on both ends of the sequence. It creates FASTQ files with ....
+
+
+....
 
 When using our ClenBar application, all sequences in your FASTQ file with the same set of 4 barcodes are written to a single file, whose name is generated from the labels of the 4 barcodes found and will be stored in the ``res_4barcodes`` folder.
 
