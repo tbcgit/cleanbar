@@ -55,13 +55,13 @@ Place your FASTQ file in the ``cleanbar`` folder. Alternatively, you can create 
 - ``CleanBar.c``
 - ``prepare.sh``
 
-Run the prepare command, which will compile the "CleanBar.c" program and create folders "res_4barcodes" and "res_23barcodes".  If these folders already exists, CleanBar will delete their content. 
+Run the prepare command, which will compile the ``CleanBar.c`` program and create folders ``res_4barcodes`` and ``res_23barcodes``.  If these folders already exists, CleanBar will delete their content. 
 
 ````
 bash prepare.sh
 ````
 
-Each time you run CleanBar in the same directory, you must either delete these folders and create new ones manually using the commands below, or simply run the "prepare.sh" script again, which handles this automatically.
+Each time you run CleanBar in the same directory, you must either delete these folders and create new ones manually using the commands below, or simply run the ``prepare.sh`` script again, which handles this automatically.
 
 ````
 mkdir  res_4barcodes  ||  rm -r  res_4barcodes/*.fq
