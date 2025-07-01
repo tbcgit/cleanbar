@@ -135,13 +135,12 @@ The following example is from the ``Atrandi_4k_summary.txt`` file, specifically 
 
 
 ###  Default options
-For information on what arguments CleanBar accepts, write:
-
+For information on the arguments CleanBar accepts, run:
 ````
 ./CB  --help
 ````
 
-and the output of the programme will be:
+The program will then display the following output:
 
 
 ````
