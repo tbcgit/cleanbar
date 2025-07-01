@@ -69,7 +69,7 @@ If you're using Windows or macOS and have experience with C or C++ programming, 
 ## Running CleanBar
 
 ### How to run CleanBar:
-Here we show how to run CleanBar using one of our example FASTQ files, Atrandi_1k.fq. The command is simple: it starts with ./CB, followed by the barcode list file barcodes.txt, and then your input FASTQ file:
+Here we show how to run CleanBar using our example FASTQ files, ``Atrandi_4k.fastq``, together with the barcode list file ``barcodes.txt``:
 
 ````
 ./CB barcodes.txt Atrandi_4k.fastq
