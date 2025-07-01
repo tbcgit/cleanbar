@@ -136,8 +136,8 @@ The following example is from the ``Atrandi_4k_summary.txt`` file, specifically 
 ````
 
 
-## Default options
-For information on what arguments the CleanBar accepts, write:
+###  Default options
+For information on what arguments CleanBar accepts, write:
 
 ````
 ./CB  --help
@@ -176,7 +176,7 @@ If you use the Atrandi platform, you do not need to modify these arguments. The 
 
 ``-ls 8`` Number of nucleotides per linker. The separation between barcodes (linker length) is 4 nucleotides. This is the expected value only, because CleanBar indicates the exact linker lengts in its output file. 
 
-For example, if you want to see 50 sequences in the screen output, the command would be the following:
+For example, if you want to see only 50 sequences in the screen output, the command would be the following:
 
 ````
 sh prepare.sh
