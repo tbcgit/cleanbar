@@ -129,6 +129,11 @@ Here is an example from the ``Atrandi_4k_stats.txt`` file, specifically for read
 @m64105_240622_213943/132618/ccs	1990_dir	      ------      	   0	(#0)				1990_rc 	ff_H11_F9_B5_C2.fq	  42	(#4)	4	4	4
 ````
 
+The following example is from the ``Atrandi_4k_summary.txt`` file, specifically for read ``@m64105_240622_213943/132618/ccs``. It shows that this read did not contain any barcodes in its direct sequence `Direct	 1990	...	 -1	...	 -1	...	 -1	...	 -1	``, but CleanBar detected four barcodes in the reverse complement sequence ``Rev_com	 1990	H11	  6	F9	 18	B5	 30	C2	 42``. The barcode labels (H11, F9, B5, and C2) are shown along with the positions of their first nucleotides (6, 18, 30, and 42).
+
+````
+@m64105_240622_213943/132618/ccs	Direct	 1990	...	 -1	...	 -1	...	 -1	...	 -1	Rev_com	 1990	H11	  6	F9	 18	B5	 30	C2	 42
+````
 
 
 ## Default options
