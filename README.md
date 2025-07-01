@@ -35,14 +35,18 @@ Create a working folder and place your FASTQ file there. Download the following 
 - ``barcodes.txt`` (use the provided file or your own)
 - ``CleanBar.c``
 - ``prepare.sh``
+  
+## How instal CleanBar:
 
-You can download all files in the CleanBar GutHub repository, including the examples, using the "clone" command:
+#Installation from source:
+
+Use the "clone" command:
 ````
  git clone  https://github.com/tbcgit/cleanbar
 ````
 
 
-## How instal CleanBar:
+
 
 
 
