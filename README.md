@@ -106,9 +106,13 @@ SINTAX: ./CB  <options>  BARCODES_File  FASTQ_File >  Screen_output_File.txt
 If you use the Atrandi platform, you do not need to modify these arguments. The default options are the following:
 
 ``-l 88``  Number of nucleotides analyzed at each end of the sequence.
+
 ``-s`` Number of reads showed on the screen by default is 2000.
+
 ``-bn 24`` Number of barcodes for group. Each group contains by default 24 barcodes.
+
 ``-bs 8`` Number of nucleotides per barcode. Each barcode is 8 nucleotides long.
+
 ``-ls 8`` Number of nucleotides per linker. The separation between barcodes (linker length) is 4 nucleotides. This is the expected value only, because CleanBar indicates the exact linker lengts in its output file. 
 
 
