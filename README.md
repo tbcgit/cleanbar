@@ -9,7 +9,7 @@ On the Atrandi platform, barcodes are ligated in the order A, B, C, D. CleanBar 
 
 The expected barcode string length produced by the Atrandi platform is 44 bp, corresponding to four 8 bp barcodes and three 4 bp linkers. Barcodes do not necessarily start at the beginning of the read, as sequencing adapters may not have been trimmed properly. Additionally, the total barcode length may deviate slightly from 44 bp due to (rare) ligation errors, such as incomplete barcode strings or linkers that are not exactly 4 bp long. CleanBar is specifically designed to handle such cases and ensure reliable barcode detection.
 
-CleanBar searches for barcodes on both ends of each read in the input FASTQ file using exact string matching, without allowing mismatches or indels. When a barcode string is found at one or both ends, it is trimmed, and the read is saved to a FASTQ file named according to the identified barcodes. For example, a read containing barcode D with label E10, barcode C  with label E8, barcode B  with label C6, and barcode A  with label B2 will be saved in a file named ``ff_E10_E8_C6_B2.fq``. If a read contains D–C–B–A barcodes on both ends, and the barcode string is detected in the reverse complement, the read is still assigned to the FASTQ file corresponding to the barcodes identified in the forward (direct) sequence - each read appears in the output only once, regardless of whether the barcode string was found on one or both ends. All sequences with complete barcode strings are saved in ``res_4barcodes`` folder. 
+CleanBar searches for barcodes on both ends of each read in the input FASTQ file using exact string matching, without allowing mismatches or indels. When a barcode string is found at one or both ends, it is trimmed, and the read is saved to a FASTQ file named according to the identified barcodes. For example, a read containing barcode D with label D11, barcode C  with label C9, barcode B  with label E5, and barcode A  with label C2 will be saved in a file named ``ff_D11_C9_E5_C2.fq``. If a read contains D–C–B–A barcodes on both ends, and the barcode string is detected in the reverse complement, the read is still assigned to the FASTQ file corresponding to the barcodes identified in the forward (direct) sequence - each read appears in the output only once, regardless of whether the barcode string was found on one or both ends. All sequences with complete barcode strings are saved in ``res_4barcodes`` folder. 
 
 ### Detection of incomplete barcode strings
 Although incomplete barcode strings do not offer single-cell resolution, some users may choose to retain reads containing 2 or 3 barcodes for downstream analysis, especially when optimizing lab protocols. If no barcode from set D is detected, CleanBar begins the search with set C. If no barcode C is found, it continues with set B. As a result, FASTQ files may be generated with only two or three barcode labels. Missing barcodes are indicated with a double underscore ``(__)``. For example, a file name  ``ff_E10_E8_C6__.fq`` would represent a read where barcode A was not detected. Complete D–C–B–A barcode strings always take priority. A read is saved based on an incomplete barcode string only if a complete barcode string is not found on the opposite end of the sequence. CleanBar can also detect barcode strings where one or two barcode sets were skipped, which may occur due to ligation errors. Sequences with 2 or 3 identical barcodes are stored in a single file which will be stored in the ``res_23barcodes`` folder.
@@ -70,12 +70,62 @@ mkdir  res_23barcodes ||  rm -r  res_23barcodes/*.fq
 
 ## Running CleanBar
 
+### How to run CleanBar:
 Here we show how to run CleanBar using one of our example FASTQ files, Atrandi_1k.fq. The command is simple: it starts with ./CB, followed by the barcode list file barcodes.txt, and then your input FASTQ file:
 
 ````
-./CB barcodes.txt Arandi_1k.fq
+./CB barcodes.txt Atrandi_4k.fastq
 ````
 
+### Output files:
+
+#### Screen output: 
+
+By default, CleanBar displays the exact alignment of the first 2,000 sequences (this number can be adjusted using the ``-s`` flag — see the Options section below). Here we show an example of the read number 1900, which contains no barcodes in the forward (direct) sequence (dir), but four consecutive barcodes were detected in the reverse complement sequence (rc). Barcode D with label H11 was found at position 6, barcode C with label F9 at position 18, barcode B with label B5 at position 30, and barcode A with label C2 at position 42.
+
+````
+---------  1990 - dir ----------------
+---------  1990 - rc  ----------------
+6	 -->[BARCODE_D]
+CGATCTCAACCAACAGGAATGGTGTGACTCCGAACTTGAAGGGTGACTCTTTGGTTTACCGCCGGGCTGGAGGGCAAAAATGCCTTAT
+      CAACCAAC	 --> H11
+
+18	 --> [BARCODE_C]
+CGATCTCAACCAACAGGAATGGTGTGACTCCGAACTTGAAGGGTGACTCTTTGGTTTACCGCCGGGCTGGAGGGCAAAAATGCCTTAT
+                  ATGGTGTG	 --> F9
+
+30	 --> [BARCODE_B]
+CGATCTCAACCAACAGGAATGGTGTGACTCCGAACTTGAAGGGTGACTCTTTGGTTTACCGCCGGGCTGGAGGGCAAAAATGCCTTAT
+                              CGAACTTG	 --> B5
+
+42	 --> [BARCODE_A]
+CGATCTCAACCAACAGGAATGGTGTGACTCCGAACTTGAAGGGTGACTCTTTGGTTTACCGCCGGGCTGGAGGGCAAAAATGCCTTAT
+                                          GTGACTCT	 --> C2
+
+````
+
+
+#### Folders:
+
+In the ``res_4barcodes`` folder, you will find all demultiplexed FASTQ files wih complete barcodes. For example the FASTQ ``ff_D11_C9_E5_C2.fq`` contains three reads that contained barcod D with label D11, barcode C  with label C9, barcode B  with label E5, and barcode A  with label C2, which means that these three reads come from the same single-cell. 
+
+In the ``res_23barcodes folder``, you will find all demultiplexed FASTQ files containing incomplete barcode strings. For example, the file ``ff_____A8_F4_B2.fq`` contains reads in which barcode D is missing, but the remaining barcodes, particularly barcode A, may still provide information, which is can be valuable in certain experimental setups. For instance, if multiple samples were combined on the same barcoding plate, the well position of the first round of barcode ligations (barcodes from the group A) may allow recovery of bulk-level data from these incomplete reads, even if single-cell resolution is lost.
+
+#### Files: 
+
+CleanBar also generates four additional output files, each named based on the input FASTQ file (in this example, Atrandi_4k):
+
+``Atrandi_4k_stats.txt`` Contains the output file name for each sequence, the position of the last detected barcode, and the lengths of the linkers between barcodes.
+
+``Atrandi_4k_summary.txt`` Lists the barcodes detected in both the forward and reverse complement sequences for each read.
+
+``Atrandi_4k_1_0_bar.fq`` Contains reads with one or no barcodes detected.
+
+``Atrandi_4k_3_2_bar.fq`` Contains reads with two or three barcodes detected.
+
+
+
+## Default options
 For information on what arguments the CleanBar accepts, write:
 
 ````
@@ -115,58 +165,20 @@ If you use the Atrandi platform, you do not need to modify these arguments. The 
 
 ``-ls 8`` Number of nucleotides per linker. The separation between barcodes (linker length) is 4 nucleotides. This is the expected value only, because CleanBar indicates the exact linker lengts in its output file. 
 
-
-
-
-
-
-
-
-
-
-
- 
-
-## An example of how to run the program on the ``Atrandi_1k.fq`` file:
-
-If you do not have a FASTQ file to process, you can download for example the file ‘Atrandi_1k.fq’ from gitHub. This file has 1000 sequences with Atrandi barcodes at the ends of their sequences. At one or both ends.
-To run the CleanBar program on this file with 1000 sequences we will write:
-
-````
-./CB  barcodes.txt Atrandi_1k.fq
-````
- 
-In the ``res_4barcodes`` folder, we will have as many files as cells with 4 identical barcodes we have.
-In the ``res_23barcodes`` folder, as many files will be generated as cells with 2 or 3 shared barcodes are obtained from using the ClenBar program.
-
-We also generate 4 files with additional information about the analysis of each sequence (read) of the analyzed ``Atrandi_1k.fq`` file:
-- ``Atrandi_1k_stats.txt`` --> provides the file name in which each sequence was stored, the position of the last detected barcode, and the lengths of linkers between barcodes
-- ``Atrandi_1k_summary.txt``  --> lists the barcodes found in both, direct and reverse complement strings for each sequence
-- ``Atrandi_1k_1_0_bar.fq``  --> Have the reads with only one or no barcodes of Atrandi_1k.fq.
-- ``Atrandi_1k_3_2_bar.fq``  --> Have the reads with 3 or 3 barcodes of Atrandi_1k.fq.
-
-The CleanBar program will display on the screen the barcodes read from the Barcodes.txt file. And then how it detects the barcodes in the first 1000 sequences (reads) of the Atrandi_1k.fq file (a user-adjustable parameter with -s flag).
-
-## Another example of using CleanBar on the  ``Atrandi_4k.fastq`` file:
-
-
-The file Atrandi_4k.fastq has 4k sequences with barcodes at their ends. 
-We can process it with CleanBar, but first we must delete all the files in the "res_4barcodes" and "res_3barcodes" folders, because if we don't do it, the new sequences to process will be added to the files we already have created, if their barcodes match.
-We also want to show how only the first 50 lines of Atrandi_4k.fastq are processed, so we will use the command ‘-s 50’.
-That's why we will execute these two commands:
+For example, if you want to see 50 sequences in the screen output, the command would be the following:
 
 ````
 sh prepare.sh
 ./CB -s 50 barcodes.txt Atrandi_4k.fastq
 ````
 
-If we want the CleanBar screen output, which includes the detail of how the barcodes are detected in the first 50 lines, we will run CleanBar as follows, generating a text file "screen.txt" where this information will be saved:
 
 
-````
-sh prepare.sh
-./CB -s 50 barcodes.txt Atrandi_4k.fastq  >  screen.txt
-````
+ 
+
+
+
+
 
 
 ## Example of using CleanBar with a file with 20 barcodes per set.
