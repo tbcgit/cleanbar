@@ -73,7 +73,7 @@ If you're using Windows or macOS and have experience with C or C++ programming, 
 ## Running CleanBar
 
 ### How to run CleanBar:
-Here we show how to run CleanBar using our example FASTQ files, ``Atrandi_4k.fastq``, together with the barcode list file ``barcodes.txt``:
+It's so simple! Here we show how to run CleanBar using our example FASTQ files, ``Atrandi_4k.fastq``, together with the barcode list file ``barcodes.txt``:
 
 ````
 ./CB barcodes.txt Atrandi_4k.fastq
@@ -83,7 +83,7 @@ Here we show how to run CleanBar using our example FASTQ files, ``Atrandi_4k.fas
 
 #### Screen output: 
 
-By default, CleanBar displays the exact alignment of the first 2,000 sequences (this number can be adjusted using the ``-s`` flag — see the Options section below). Here we show an example of the read number 1900, which contains no barcodes in the forward (direct) sequence (dir), but four consecutive barcodes were detected in the reverse complement sequence (rc). Barcode D with label H11 was found at position 6, barcode C with label F9 at position 18, barcode B with label B5 at position 30, and barcode A with label C2 at position 42.
+By default, CleanBar displays the exact alignment of the first 2,000 sequences (this number can be adjusted using the ``-s`` flag — see the Options section below). Here we show an example of the read number 1900, which contains no barcodes in the direct sequence (dir), but four consecutive barcodes were detected in the reverse complement sequence (rc). Barcode D with label H11 was found at position 6, barcode C with label F9 at position 18, barcode B with label B5 at position 30, and barcode A with label C2 at position 42.
 
 ````
 ---------  1990 - dir ----------------
