@@ -19,35 +19,28 @@ Reads with only one detected barcode are not saved in separate FASTQ files. This
 
 ## What do you need to get started?
 
-### Requirements
-
 To use CleanBar, you will need:
 
 - FASTQ file containing your sequence data from a split-and-pool barcoding assay. This file must be quality-filtered prior to use
 - ``barcodes.txt`` file listing the barcodes used in your assay
 
 We provide a ``barcodes.txt`` file for the Atrandi platform, based on the SINGLE-MICROBE DNA BARCODING protocol (Doc. No. DGPM02323206001). If your data were generated using this system, you can use the file directly. If you're working with data from a different split-and-pool barcoding platform, please refer to the section "How to adapt CleanBar to other split-and-pool barcoding platforms" in this manual for instructions on how to generate a compatible ``barcodes.txt`` file.
-
-### Setup
-
-Create a working folder and place your FASTQ file there. Download the following files to the same folder:
-
-- ``barcodes.txt`` (use the provided file or your own)
-- ``CleanBar.c``
-- ``prepare.sh``
   
 ## How instal CleanBar:
 
-#Installation from source:
+### Installation from source:
 
-Use the "clone" command:
+#### Use the "clone" command:
 ````
  git clone  https://github.com/tbcgit/cleanbar
 ````
 
+##### Setup:
+Create a working folder and place your FASTQ file there. In addition, your working folder must contain:
 
-
-
+- ``barcodes.txt`` (use the provided file or your own)
+- ``CleanBar.c``
+- ``prepare.sh``
 
 
 
