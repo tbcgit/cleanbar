@@ -109,19 +109,25 @@ CGATCTCAACCAACAGGAATGGTGTGACTCCGAACTTGAAGGGTGACTCTTTGGTTTACCGCCGGGCTGGAGGGCAAAAA
 
 In the ``res_4barcodes`` folder, you will find all demultiplexed FASTQ files wih complete barcodes. For example the FASTQ ``ff_D11_C9_E5_C2.fq`` contains three reads that contained barcod D with label D11, barcode C  with label C9, barcode B  with label E5, and barcode A  with label C2, which means that these three reads come from the same single-cell. 
 
-In the ``res_23barcodes folder``, you will find all demultiplexed FASTQ files containing incomplete barcode strings. For example, the file ``ff_____A8_F4_B2.fq`` contains reads in which barcode D is missing, but the remaining barcodes, particularly barcode A, may still provide information, which is can be valuable in certain experimental setups. For instance, if multiple samples were combined on the same barcoding plate, the well position of the first round of barcode ligations (barcodes from the group A) may allow recovery of bulk-level data from these incomplete reads, even if single-cell resolution is lost.
+In the ``res_23barcodes folder``, you will find all demultiplexed FASTQ files containing incomplete barcode strings. For example, the file ``ff_____A8_F4_B2.fq`` contains reads, in which barcode D is missing, but the remaining barcodes, particularly barcode A, may still provide information, which is can be valuable in certain experimental setups. For instance, if multiple samples were combined on the same barcoding plate, the well position of the first round of barcode ligations (barcodes from the group A) may allow recovery of bulk-level data from these incomplete reads, even if single-cell resolution is lost.
 
 #### Files: 
 
 CleanBar also generates four additional output files, each named based on the input FASTQ file (in this example, Atrandi_4k):
 
-``Atrandi_4k_stats.txt`` Contains the output file name for each sequence, the position of the last detected barcode, and the lengths of the linkers between barcodes.
+``Atrandi_4k_stats.txt`` Contains the output file name for each sequence, the position of the last detected barcode, and the lengths of the linkers between barcodes. 
 
 ``Atrandi_4k_summary.txt`` Lists the barcodes detected in both the forward and reverse complement sequences for each read.
 
 ``Atrandi_4k_1_0_bar.fq`` Contains reads with one or no barcodes detected.
 
 ``Atrandi_4k_3_2_bar.fq`` Contains reads with two or three barcodes detected.
+
+Here is an example from the ``Atrandi_4k_stats.txt`` file, specifically for read number 1990 (also shown in the screen output example above). This line indicates that the read with ID ``@m64105_240622_213943/132618/ccs`` did not contain any barcodes in its direct sequence ``1990_dir	      ------      	   0	(#0)``, but CleanBar detected four barcodes ``(#4)`` in the reverse complement sequence ``1990_rc``. The last barcode A started at position ``42``, and the four barcodes were separated by three linkers, each 4 bp long ``4 4 4``. This sequence has been saved in the file ``ff_H11_F9_B5_C2.fq``.
+
+````
+@m64105_240622_213943/132618/ccs	1990_dir	      ------      	   0	(#0)				1990_rc 	ff_H11_F9_B5_C2.fq	  42	(#4)	4	4	4
+````
 
 
 
