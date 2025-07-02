@@ -67,7 +67,7 @@ mkdir  res_23barcodes ||  rm -r  res_23barcodes/*.fq
 
 ### Installation in Windows:
 
-If you're using Windows or macOS and have experience with C or C++ programming, you can manually download all the necessary files from this repository to your working directory and compile CleanBar.c using your preferred C compiler. Once compiled, you will be able to run CleanBar under the same conditions as if you had cloned the repository via GitHub. Simply follow the same usage instructions described in this manual.
+If you're using Windows, you can use Git Bash, which is a Windows application that provides a Unix-like command-line environment, allowing Windows users to use Git commands and other common Unix command-line tools.
 
 
 ## Running CleanBar
