@@ -77,6 +77,7 @@ If you're using Windows, you can use Git Bash, which is a Windows application th
 It's so simple! Here we show how to run CleanBar using our example FASTQ file ``Atrandi_4k.fastq``, which is located in the folder EXAMPLES, together with the barcode list file ``barcodes.txt``. The easiest way to test the program is to copy ``Atrandi_4k.fastq`` into the main ``cleanbar`` working directory using the following command: ``cp EXAMPLES/Atrandi_4k.fastq``.
 
 ````
+bash prepare.sh
 ./CB barcodes.txt Atrandi_4k.fastq
 ````
 
@@ -221,7 +222,7 @@ Here is an example command line for an extreme barcoding assay, where each barco
 
 ````
 bash prepare.sh
-./CB   -s 40 -l 158 -bn 96 -bs 20 -ls 6  <barcodesfilename>.txt <inputFASTQ>.fastq
+./CB   -s 40 -l 158 -bn 96 -bs 20 -ls 6  <barcodeslist>.txt <inputFASTQ>.fastq
 ````
 
 ## Citation:
