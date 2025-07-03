@@ -74,10 +74,10 @@ If you're using Windows, you can use Git Bash, which is a Windows application th
 ## Running CleanBar
 
 ### How to run CleanBar:
-It's so simple! Here we show how to run CleanBar using our example FASTQ files, ``Atrandi_4k.fastq``, together with the barcode list file ``barcodes.txt``:
+It's so simple! Here we show how to run CleanBar using our example FASTQ files, ``Atrandi_4k.fastq``, which is located in the folder EXAMPLES, together with the barcode list file ``barcodes.txt``. 
 
 ````
-./CB barcodes.txt Atrandi_4k.fastq
+./CB barcodes.txt EXAMPLES/Atrandi_4k.fastq
 ````
 
 ### Output files:
@@ -182,7 +182,7 @@ For example, if you want to see only 50 sequences in the screen output, the comm
 
 ````
 bash prepare.sh
-./CB -s 50 barcodes.txt Atrandi_4k.fastq
+./CB -s 50 barcodes.txt <inputFASTQ>.fastq
 ````
 
 
@@ -196,7 +196,7 @@ To adjust CleanBar for barcode groups of a different size, modify the ``barcodes
 
 ````
 bash prepare.sh
-./CB   -bn 20 barcodes_bn20.txt Atrandi_4k.fastq
+./CB   -bn 20 barcodes_bn20.txt EXAMPLES/Atrandi_4k.fastq
 ````
 
 ### Using four barcode groups, but two groups contains a lower number of barcodes:
@@ -204,7 +204,7 @@ In this example, the barcodes are arranged as follows: group A with 24 barcodes,
 
 ````
 bash prepare.sh
-./CB  barcodes_halfxx.txt Atrandi_4k.fastq
+./CB  barcodes_halfxx.txt EXAMPLES/Atrandi_4k.fastq
 ````
 
 ### Using only three barcode groups with non-default barcode and linker lengths:
@@ -213,7 +213,7 @@ In this example file ``barcodes_bs12_ls6_xx.txt``, there are three groups of bar
 
 ````
 bash prepare.sh
-./CB   -l 92 -bs 12 -ls 6 barcodes_bs12_ls6_xx.txt Atrandi_4k.fastq
+./CB   -l 92 -bs 12 -ls 6 barcodes_bs12_ls6_xx.txt EXAMPLES/Atrandi_4k.fastq
 ````
 
 ### Combining all options:
@@ -221,7 +221,7 @@ Here is an example command line for an extreme barcoding assay, where each barco
 
 ````
 bash prepare.sh
-./CB   -s 40 -l 158 -bn 96 -bs 20 -ls 6  <barcodesfilename>.txt <fastqfilename>.fastq
+./CB   -s 40 -l 158 -bn 96 -bs 20 -ls 6  <barcodesfilename>.txt <inputFASTQ>.fastq
 ````
 
 ## Citation:
