@@ -74,7 +74,7 @@ If you're using Windows, you can use Git Bash, which is a Windows application th
 ## Running CleanBar
 
 ### How to run CleanBar:
-It's so simple! Here we show how to run CleanBar using our example FASTQ files, ``Atrandi_4k.fastq``, which is located in the folder EXAMPLES, together with the barcode list file ``barcodes.txt``. 
+It's so simple! Here we show how to run CleanBar using our example FASTQ file ``Atrandi_4k.fastq``, which is located in the folder EXAMPLES, together with the barcode list file ``barcodes.txt``. 
 
 ````
 ./CB barcodes.txt EXAMPLES/Atrandi_4k.fastq
