@@ -57,7 +57,7 @@ Run the ``prepare.sh`` command, which will compile the ``CleanBar.c`` program an
 ````
 bash prepare.sh
 ````
-The compiler program gcc is usually pre-installed on most Linux systems and may also be available on macOS if developer tools are installed. If you receive an error indicating that the gcc command is not recognized, you can install it on Linux distributions using: ``sudo apt install build-essential`` . On macOS, you can install it by running: ``xcode-select --install``.
+The compiler program gcc is usually pre-installed on most Linux systems and may also be available on macOS if developer tools are installed. If you receive a very rare error indicating that the gcc command is not recognized, you can install it on Linux distributions using: ``sudo apt install build-essential`` . On macOS, you can install it by running: ``xcode-select --install``.
 
 Running the ``prepare.sh`` script will automatically create two folders: ``res_4barcodes`` and ``res_23barcodes``.  If these folders already exists, CleanBar will delete their content. Each time you run CleanBar in the same directory, you must either delete these folders and create new ones manually using the commands below, or simply run the ``prepare.sh`` script again, which handles this automatically.
 
