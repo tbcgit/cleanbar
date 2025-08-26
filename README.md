@@ -1,6 +1,6 @@
 # CleanBar
 
-![My Figure](https://github.com/tbcgit/cleanbar/blob/main/cleanbar.png?raw=true)
+<img src="https://github.com/tbcgit/cleanbar/blob/main/cleanbar.png?raw=true" width="400">
 
 CleanBar is a flexible tool for demultiplexing reads tagged with sequentially ligated barcodes (split-and-pool barcoding). It searches for barcodes at both ends of the sequence, accommodates variation in barcode positions and linker lengths, handles diverse ligation errors, and minimizes misclassification of natural barcode-like sequences. It also provides statistics to help optimize laboratory protocols. CleanBar was originally developed to process reads from the Atrandi platform, but it is adaptable to a wide range of barcode configurations and linker types.
 
