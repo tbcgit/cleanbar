@@ -227,5 +227,5 @@ bash prepare.sh
 
 ## Citation:
 If you use CleanBar program, please, cite our article:
+Arnau, V., Ortiz-Maiques, A., Valero-Tebar, J., Mora-Quilis, L., Kurmauskaite, V., Campos Dopazo, L., Domingo-Calap, P., Džunková, M. (2025). CleanBar: A Versatile Demultiplexing Tool for Split-and-Pool Barcoding in Single-Cell Omics. ISME communications, 5(1), ycaf134. https://doi.org/10.1093/ismeco/ycaf134
 
-Vicente Arnau, Alicia Ortiz-Maiques, Juan Valero-Tebar, Lucas Mora-Quilis, Vaida Kurmauskaite, Lorea Campos Dopazo, Pilar Domingo-Calap, Mária Džunková. CleanBar: A Versatile Demultiplexing Tool for Split-and-Pool Barcoding in Single-Cell Omics. Under review in ISME Communications
